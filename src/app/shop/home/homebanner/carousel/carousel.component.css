@@ -1,5 +1,15 @@
 :host{
-  margin: 0 20px;
+  /* margin: 0 20px; */
+}
+
+.ng-carousel{
+  width: 100%;
+  border-radius: 10px;
+}
+
+.ng-temp{
+  width: 100%;
+  border-radius: 10px;
 }
 
 .picsum-img-wrapper{
@@ -11,3 +21,15 @@
   width: 100%;
   height: 60vh;
 }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px){
+
+    .picsum-img-wrapper img{
+      height: 50%;
+    }
+  }
+  /* large phone  */
+  @media screen and (max-width:767px){
+
+
+  }

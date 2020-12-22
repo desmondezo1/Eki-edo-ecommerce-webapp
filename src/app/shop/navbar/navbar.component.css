@@ -324,6 +324,9 @@
   .mobile-search-bar{
     display: none;
   }
+  .login-and-cart{
+    flex-grow: 3;
+  }
 
 }
 
