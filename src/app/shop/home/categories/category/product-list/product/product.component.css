@@ -1,0 +1,25 @@
+:host{
+  display: grid;
+  justify-content: center;
+    grid-gap: 10px;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fit, 150px);
+}
+
+.product {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  height: 150px;
+  align-items: center;
+}
+
+/* tablet device */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
+}
+  /* large phone  */
+@media screen and (max-width:767px){
+
+}

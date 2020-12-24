@@ -1,0 +1,29 @@
+
+<section class="search-result-section">
+  <div class="pos-wrapper">
+
+
+    <div class="filter">
+      <app-result-filter></app-result-filter>
+    </div>
+  </div>
+
+    <div class="product-list">
+      <div class="sort">
+        <!-- <select class="form-control form-control-sm">
+          <option>Small select</option>
+        </select> -->
+          <div ngbDropdown class="d-inline-block">
+            <button class="button-sort" id="dropdownBasic1" ngbDropdownToggle>Sort By</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdownlist">
+              <button ngbDropdownItem>Low > High price</button>
+              <button ngbDropdownItem>High > Low price</button>
+            </div>
+          </div>
+      </div>
+      <app-product-list></app-product-list>
+    </div>
+</section>
+
+<app-filter-navigation (scroll)="onScrollEvent($event)" #filterNav></app-filter-navigation>
+
