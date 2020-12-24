@@ -22,6 +22,9 @@ import { ResultFilterComponent } from './shop/search-result/result-filter/result
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterNavigationComponent } from './shop/search-result/filter-navigation/filter-navigation.component';
+import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
+import { ProductImageGalleryComponent } from './shop/product-detail/product-image-gallery/product-image-gallery.component';
+import { ImageListComponent } from './shop/product-detail/product-image-gallery/image-list/image-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { FilterNavigationComponent } from './shop/search-result/filter-navigatio
     ProductComponent,
     SearchResultComponent,
     ResultFilterComponent,
-    FilterNavigationComponent
+    FilterNavigationComponent,
+    ProductDetailComponent,
+    ProductImageGalleryComponent,
+    ImageListComponent
   ],
   imports: [
     BrowserModule,

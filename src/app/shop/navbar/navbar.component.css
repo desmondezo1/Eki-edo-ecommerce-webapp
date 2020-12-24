@@ -88,10 +88,17 @@
  .login-and-cart .login{
    display: flex;
    color: #555353;
+    justify-content: center;
+    align-items: center;
  }
+
  .login-and-cart .login .user-icon{
    margin-right: 10px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
  }
+
  .user-icon svg path{
    fill: #555353;
  }
@@ -100,6 +107,9 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
  }
 
  .cart{
@@ -117,6 +127,9 @@
 .cart .cart-icon{
   margin-right: 10px;
   font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -368,7 +381,7 @@
 
   .mobile-search-bar input{
     height: 25px;
-  
+
   }
 
 

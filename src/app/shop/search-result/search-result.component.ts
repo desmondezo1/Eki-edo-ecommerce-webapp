@@ -31,7 +31,6 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
             // console.log(screenHeight);
             const filterNav: any = document.querySelector('app-filter-navigation');
             const footer = document.querySelector('app-footer');
-
             const res = this.getDiffBetweenTopAndBottom(footer, filterNav);
 
             console.log(res);

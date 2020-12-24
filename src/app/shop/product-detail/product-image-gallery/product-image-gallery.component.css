@@ -1,0 +1,17 @@
+.single-img{
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  height: 250px;
+}
+
+.single-img img, .images-list img{
+  border-radius: 5px;
+}
+
+.images-list{
+  background: red;
+  height: 50px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
