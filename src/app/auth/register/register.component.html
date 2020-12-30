@@ -1,0 +1,68 @@
+
+<section>
+  <div class="wrapper">
+    <h3>Register</h3>
+    <form action="" #registerForm ="ngForm" method="post" (ngSubmit)="registerForm.valid && register()">
+
+      <div class="firstName-div input-div">
+        <input class="form-control" type="text" [ngClass]="{'is-invalid': firstname.touched && firstname.invalid}" [(ngModel)]="form.firstname" name="firstname" #firstname="ngModel" placeholder="First name" required/>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+      <div class="lastName-div  input-div">
+        <input class="form-control" type="text" [ngClass]="{'is-invalid': lastname.touched && lastname.invalid}" [(ngModel)]="form.lastname" name="lastname" placeholder="Last name" #lastname="ngModel" required/>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+      <div class="email-div  input-div">
+        <input class="form-control" type="email" [ngClass]="{'is-invalid': email.touched && email.invalid}" [(ngModel)]="form.email" name="email" #email="ngModel" placeholder="Email" required/>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+      <div class="phone-div  input-div">
+        <input class="form-control" type="phone" [ngClass]="{'is-invalid': phone.touched && phone.invalid}" [(ngModel)]="form.phone" name="phone" #phone="ngModel" placeholder="phone number: +234" required/>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+      <div class="address-div  input-div">
+        <textarea placeholder="Address" [ngClass]="{'is-invalid': address.touched && address.invalid}" [(ngModel)]="form.address" class="form-control" #address="ngModel" name="address" id="address" rows="3" required></textarea>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+      <div class="password-div  input-div">
+        <input class="form-control" type="password" [ngClass]="{'is-invalid': password.touched && password.invalid}" [(ngModel)]="form.password" #password="ngModel" name="password" placeholder="Password" required/>
+        <span class="invalid-feedback">
+          Required field
+        </span>
+      </div>
+
+
+      <div class="extras">
+        <div class="checkbox">
+          <input Class="check" type="checkbox" name="remember" />
+          <label for="check">I want to recieve news on offers</label>
+        </div>
+
+      </div>
+
+      <div class="register-btn-div">
+        <button type="submit" [ngClass]="registerForm.valid ? '' : 'disabled'" >
+          Register
+        </button>
+      </div>
+    </form>
+
+
+  </div>
+</section>
+

@@ -1,0 +1,113 @@
+section{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 50vh; */
+    padding: 5%;
+
+}
+
+form{
+  width: 100%;
+}
+
+.form-control{
+  /* margin-bottom: 20px; */
+  border: 1px solid #989898;
+  /* color: #989898; */
+  color: rgb(20, 20, 20);
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 50%;
+  padding: 5% 5% 6% 5%;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.wrapper h3{
+  margin-bottom: 40px;
+  color: #989898;
+  text-transform: uppercase;
+}
+
+.input-div{
+  margin-bottom: 25px;
+}
+
+.extras{
+  display: flex;
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.extras .checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.extras .checkbox label{
+  text-decoration: none;
+  color: #6F6A6A;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.extras .check{
+  margin-right: 10px;
+}
+
+
+.register-btn-div{
+  display: flex;
+}
+
+.register-btn-div button{
+  flex-grow: 1;
+  background: #CC353E;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  color: #F7F7F7;
+  text-transform: uppercase;
+}
+
+.register-btn-div button.disabled{
+  background: #ff9da3;
+}
+
+/* ========= media queries ====== */
+/* ========= media queries  ============ */
+
+/* tablet device */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
+
+.wrapper{
+  width: 100%;
+  max-width: 70%;
+}
+
+
+}
+
+  /* large phone  */
+  @media screen and (max-width:767px){
+
+    .wrapper{
+      width: 100%;
+      max-width: 100%;
+      padding: 10% 7% 15% 7%;
+    }
+
+}
+
+

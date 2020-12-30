@@ -1,3 +1,15 @@
 :host{
-  display: grid;
+  /* display: grid; */
+  display: block;
+  /* margin-top: 100px; */
+  min-height: 100vh;
+  overflow: auto;
+  position: relative;
 }
+
+.wrapper{
+  padding-bottom: 100px;
+  padding-top: 100px ;
+}
+
+

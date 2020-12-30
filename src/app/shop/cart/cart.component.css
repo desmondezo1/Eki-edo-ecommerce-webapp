@@ -1,0 +1,228 @@
+.wrapper{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+
+}
+.wrapper-div{
+  width: 80%;
+  margin-top: 30px;
+  /* display: flex; */
+}
+
+.cart-items{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.cart-items .cart-item-count{
+  color: #555353;
+}
+
+.cart-items .cart-item-count h1{
+  font-size: 1.3rem;
+}
+
+.wrapper-div .checkout-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.wrapper-div .total{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wrapper-div .total .total-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+}
+
+
+.wrapper-div .total .total-wrap .grand-total{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.wrapper-div .total .total-wrap .grand-total .val h3{
+  color: #539647;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.wrapper-div .total .total-wrap .grand-total .label h4{
+  color: #989898;
+  font-size: 1.4rem!important;
+  font-weight: 500;
+}
+
+.wrapper-div .total .total-wrap .desc{
+  color: #bcbcbc;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.wrapper-div .checkout-btn button, .wrapper-div .checkout-btn a{
+  border: none;
+  padding: 10px 40px;
+  margin: 20px;
+  font-weight: 600;
+}
+
+.wrapper-div .checkout-btn .cont-shopping{
+  background: #FFFFFF;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 1px 3px -1px rgb(0 0 0 / 25%);
+  border-radius: 5px;
+  color: #65D75B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper-div .checkout-btn .cont-shopping .return-home-icon{
+  display: none;
+}
+
+.wrapper-div .checkout-btn .proceed{
+  background: #C71F29;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  color: #F7F7F7;
+}
+
+
+.cart-item-label{
+display: grid;
+padding: 20px;
+grid-template-columns: 3fr 1fr 1fr 1fr;
+}
+
+.item-label,
+.qty-label,
+.unit-label,
+.subtotal-label{
+  text-transform: uppercase;
+  color: #989898;
+  font-weight: 600;
+}
+
+.qty-label,
+.unit-label,
+.subtotal-label{
+  text-align: center;
+}
+
+
+/* ========= media queries  ============ */
+
+/* tablet device */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .cart-item-label{
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 3fr 1fr;
+}
+
+.unit-label,
+.subtotal-label{
+  display: none;
+}
+
+
+}
+
+
+  /* large phone  */
+  @media screen and (max-width:767px){
+
+    .unit-label,
+    .subtotal-label{
+      display: none;
+    }
+
+  }
+
+  /* large phone  */
+  @media screen and (max-width:767px){
+    .cart-item-label{
+        visibility: hidden;
+     }
+
+    .wrapper-div .total .total-wrap .grand-total{
+        width: 85%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .wrapper-div .total .total-wrap .grand-total .val h3{
+        font-size: 1.2rem;
+    }
+    .wrapper-div .total .total-wrap .grand-total .label h4{
+        font-size: 1.1rem!important;
+    }
+
+
+    /* mobile fixed checkout buttons */
+
+    .checkout-btn{
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 11%;
+      background: #fff;
+      box-shadow: 0px -2px 18px -14px #6c757d;
+    }
+
+    .checkout-btn .btn-wrapper{
+      display: flex;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .checkout-btn .btn-wrapper button, .checkout-btn .btn-wrapper a{
+      padding: 0;
+      margin: 0;
+    }
+
+    .checkout-btn .btn-wrapper button.proceed{
+      width: 70%;
+      flex-grow: 3;
+    }
+
+    .checkout-btn .btn-wrapper a.cont-shopping{
+      width: 20%;
+      flex-grow: 1;
+      margin-right: 5%;
+      padding: 5px;
+      box-shadow: 0px 1px 5px -1px rgb(0 0 0 / 25%);
+    }
+
+    .wrapper-div .checkout-btn .cont-shopping .return-home-icon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper-div .checkout-btn .cont-shopping .return-home-icon svg{
+      font-size: 1.3rem;
+    }
+
+    .wrapper-div .checkout-btn .cont-shopping .return-home-icon svg path{
+      fill: green;
+    }
+
+    .wrapper-div .checkout-btn .cont-shopping .return-home-text{
+      display: none;
+    }
+
+
+
+  }

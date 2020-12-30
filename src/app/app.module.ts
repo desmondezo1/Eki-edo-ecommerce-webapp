@@ -20,12 +20,18 @@ import { SearchResultComponent } from './shop/search-result/search-result.compon
 import { ResultFilterComponent } from './shop/search-result/result-filter/result-filter.component';
 
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterNavigationComponent } from './shop/search-result/filter-navigation/filter-navigation.component';
 import { ProductDetailComponent } from './shop/product-detail/product-detail.component';
 import { ProductImageGalleryComponent } from './shop/product-detail/product-image-gallery/product-image-gallery.component';
 import { ImageListComponent } from './shop/product-detail/product-image-gallery/image-list/image-list.component';
-
+import { CartComponent } from './shop/cart/cart.component';
+import { CartItemComponent } from './shop/cart/cart-item/cart-item.component';
+import { CurrencyPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +52,12 @@ import { ImageListComponent } from './shop/product-detail/product-image-gallery/
     FilterNavigationComponent,
     ProductDetailComponent,
     ProductImageGalleryComponent,
-    ImageListComponent
+    ImageListComponent,
+    CartComponent,
+    CartItemComponent,
+    LoginComponent,
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +65,9 @@ import { ImageListComponent } from './shop/product-detail/product-image-gallery/
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

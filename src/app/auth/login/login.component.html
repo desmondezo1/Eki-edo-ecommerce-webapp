@@ -1,0 +1,38 @@
+
+  <section>
+    <div class="wrapper">
+      <h3>Login</h3>
+      <form action="" #loginForm = "ngForm" method="post" (ngSubmit)="loginForm.valid && login($event)">
+        <div class="email-div">
+          <input class="form-control" type="email" [ngClass]="{'is-invalid': email.touched && email.invalid}" [(ngModel)]="model.email" #email="ngModel" name="email" placeholder="Email" required/>
+          <span class="invalid-feedback">Required</span>
+        </div>
+        <div class="password-div">
+          <input class="form-control" [ngClass]="{'is-invalid': password.touched && password.invalid}" type="password"  [(ngModel)]="model.password" #password="ngModel" name="password" placeholder="Password" required/>
+          <span class="invalid-feedback">Required</span>
+        </div>
+
+
+        <div class="extras">
+          <div class="checkbox">
+            <input Class="check" type="checkbox"  [(ngModel)]="model.remember" name="remember" />
+            <label for="check">Remeber Me</label>
+          </div>
+
+          <div class="forgot-pwd">
+            <a href="">Forgot password</a>
+          </div>
+        </div>
+
+        <div class="login-btn-div">
+          <button [ngClass]="loginForm.valid ? '' : 'disabled'" type="submit" >
+            Login
+          </button>
+        </div>
+      </form>
+
+
+    </div>
+  </section>
+
+

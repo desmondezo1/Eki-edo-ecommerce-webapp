@@ -6,6 +6,8 @@
 
 .single-img img, .images-list img{
   border-radius: 5px;
+  height: 100%;
+  width: 100%;
 }
 
 .images-list{
