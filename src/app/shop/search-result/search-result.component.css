@@ -3,6 +3,7 @@
   justify-content: center;
 }
 
+
 .search-result-section{
   display: flex;
   justify-content: space-around;
@@ -27,6 +28,7 @@
   flex-grow: 5;
   background: #fff;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .sort{

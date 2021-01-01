@@ -48,11 +48,12 @@ a{
   font-style: normal;
   font-weight: normal;
   color: #989898;
+  min-height: 69px;
   text-align: center;
-  height: 100px;
+
 }
 
-.product .name h1{
+.product .name h2{
   /* font-size: 1.5rem; */
     font-size: 0.9rem;
     margin-top: 10px;
@@ -60,18 +61,30 @@ a{
 
 
 .product .price{
-  font-family: Open Sans;
+  /* font-family: Open Sans;
   font-style: normal;
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
   /* color: #65D75B; */
-  color: #1e7e34;
-  /* color: #343a40; */
+  /* color: #1e7e34;
+  color: #343a40; */
+
+
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-size: 0.92rem;
+  font-weight: bold;
+  text-align: center;
+  color: #669c73;
 }
 
 /* tablet device */
 @media screen and (min-width: 768px) and (max-width: 1024px){
+
+  .product .name{
+    min-height: 90px;
+  }
 
   .product .name h1{
     font-size: 1.3rem;
@@ -83,6 +96,10 @@ a{
   .product{
     width: 185px;
 
+  }
+
+  .product .name{
+    min-height: 59px;
   }
   .product .name h1{
     font-size: 1.1rem;

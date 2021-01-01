@@ -1,7 +1,18 @@
+:host{
+  /* display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  grid-template-areas: "gl sg"; */
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
+  grid-template-areas: ". sg .";
+}
+
 .single-img{
   box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   height: 250px;
+  grid-area: sg;
+  max-width: 300px;
 }
 
 .single-img img, .images-list img{
@@ -11,9 +22,21 @@
 }
 
 .images-list{
+  grid-area: gl;
   background: red;
   height: 50px;
   border-radius: 10px;
   margin: 20px 0;
 }
 
+
+/* media queries  */
+
+@media screen and (max-width: 778px){
+  :host{
+    grid-template-columns: 0.4fr 1fr;
+    grid-template-areas:
+        "sg sg"
+        "gl gl";
+  }
+}

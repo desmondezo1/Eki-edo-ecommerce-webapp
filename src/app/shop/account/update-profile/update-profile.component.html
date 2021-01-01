@@ -1,0 +1,66 @@
+<h2 class="pageTitle">
+  Update Profile
+</h2>
+
+<form [formGroup]="profileForm" action="" method="post">
+
+  <div class="form-group">
+    <div class="firstname-div">
+        <input type="text" name="firstname" id="" class="form-control"
+        [ngClass]="{'is-invalid': profileForm.get('firstName').touched && profileForm.get('firstName').invalid}"
+        formControlName="firstName" placeholder="First name">
+
+        <span class="invalid-feedback">Sorry,this field can't be empty</span>
+    </div>
+
+    <div class="lastname-div">
+        <input type="text" name="lastname" id="" class="form-control"
+        [ngClass]="{'is-invalid': profileForm.get('lastName').touched && profileForm.get('lastName').invalid}"
+        formControlName="lastName" placeholder="Last name">
+        <span class="invalid-feedback">Sorry,this field can't be empty</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="email-div">
+       <input type="text" name="email" id="" class="form-control"
+       [ngClass]="{'is-invalid': profileForm.get('email').touched && profileForm.get('email').invalid}"
+       formControlName="email" placeholder="Email">
+       <span class="invalid-feedback">
+         <span *ngIf="profileForm.get('email').hasError('required') ">Please input an email</span>
+         <span *ngIf="profileForm.get('email').hasError('email') "> Your email must be a valid email</span>
+       </span>
+    </div>
+
+    <div class="phone-div">
+        <input type="text" name="phone" id="" class="form-control"
+        [ngClass]="{'is-invalid': profileForm.get('phone').touched && profileForm.get('phone').invalid}"
+        formControlName="phone" placeholder="Phone: +234..">
+        <span class="invalid-feedback">Sorry,this field can't be empty</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="city-div">
+       <input type="text" name="city" id="" class="form-control"
+       [ngClass]="{'is-invalid': profileForm.get('city').touched && profileForm.get('city').invalid}"
+       formControlName="city" placeholder="City">
+       <span class="invalid-feedback">Sorry,this field can't be empty</span>
+    </div>
+    <div class="state-div">
+      <input type="text" name="State" id="" class="form-control"
+      [ngClass]="{'is-invalid': profileForm.get('state').touched && profileForm.get('state').invalid}"
+      formControlName="state" placeholder="State">
+      <span class="invalid-feedback">Sorry,this field can't be empty</span>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <textarea name="address" id="" class="form-control"
+    [ngClass]="{'is-invalid': profileForm.get('address').touched && profileForm.get('address').invalid}"
+    formControlName="address" placeholder="Address"></textarea>
+    <span class="invalid-feedback">Sorry,this field can't be empty</span>
+  </div>
+
+</form>

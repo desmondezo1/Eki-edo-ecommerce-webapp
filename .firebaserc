@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "eki-edo": {
+      "hosting": {
+        "eki-edo": [
+          "eki-edo"
+        ]
+      }
+    }
+  }
+}

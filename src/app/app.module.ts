@@ -32,6 +32,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AccountComponent } from './shop/account/account.component';
+import { UpdateProfileComponent } from './shop/account/update-profile/update-profile.component';
+import { OrdersComponent } from './shop/account/orders/orders.component';
+import { SavedItemsComponent } from './shop/account/saved-items/saved-items.component';
+import { ChangePasswordComponent } from './shop/account/change-password/change-password.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,15 +67,22 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CartItemComponent,
     LoginComponent,
     RegisterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccountComponent,
+    UpdateProfileComponent,
+    OrdersComponent,
+    SavedItemsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

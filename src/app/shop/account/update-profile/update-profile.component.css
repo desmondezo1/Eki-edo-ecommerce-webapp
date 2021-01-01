@@ -1,0 +1,30 @@
+.pageTitle{
+  font-size: 1.3rem;
+  color: #656565;
+  margin-bottom: 30px;
+}
+
+
+.form-group{
+  display: flex;
+}
+
+textarea{
+  min-height: 150px;
+}
+
+
+.firstname-div,
+.lastname-div,
+.email-div,
+.phone-div,
+.city-div,
+.state-div{
+  flex-grow: 1;
+}
+
+.lastname-div,
+.phone-div,
+.state-div{
+  margin-left: 20px;
+}

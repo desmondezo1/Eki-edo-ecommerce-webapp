@@ -8,6 +8,15 @@
     z-index: 99;
 }
 
+nav{
+  /* position: relative; */
+}
+
+a{
+  text-decoration: none;
+}
+
+
 /* ---- top nav links ---  */
 .top-nav-links{
   font-family: 'Open Sans', sans-serif;
@@ -94,7 +103,46 @@
    color: #555353;
     justify-content: center;
     align-items: center;
+    position: relative;
+    cursor: pointer;
  }
+
+ .login .dropdown-login{
+    position: absolute;
+    /* padding: 20px; */
+    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    height: 90px;
+    bottom: -400%;
+    justify-content: space-around;
+    display: none;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0px 5px 8px -3px grey;
+  }
+
+  .dropdown-login a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: rgb(63, 60, 60);
+    font-weight: 600;
+    border-radius: 5px;
+  }
+
+  .dropdown-login a:hover{
+    background: #ddf1da;
+  }
+
+  .login-and-cart .login:hover, .login-and-cart .login:hover .user-icon svg path{
+    color: #e0e0e0;
+    fill: #e0e0e0;
+  }
+
+  .login-and-cart .login:hover .dropdown-login{
+    display: flex;
+    cursor: pointer;
+  }
 
  .login-and-cart .login .user-icon{
    margin-right: 10px;
@@ -278,9 +326,17 @@
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
-          background: rgb(231, 231, 231);
+          overflow: auto;
+          /* background: rgb(231, 231, 231); */
+          background: #FFFFFF;
           /* overflow-y: scroll; */
       }
+
+      .menu-div a:hover{
+        color: green;
+        font-weight: 700;
+      }
+
       .menu-div .menu-links{
           display: -webkit-box;
           display: -ms-flexbox;
@@ -306,10 +362,32 @@
                   align-items: center;
           font-weight: 600;
           color: #333;
+          padding: 10px;
+      }
+
+      .menu-div .menu-links .link{
+        /* background: #dbdbdb; */
+        border-radius: 5px;
+        background: #f4f1f1;
+      }
+
+      .menu-div .menu-links .link:hover{
+        background: #cfdecf;
+        color: green;
+      }
+
+      .menu-div .menu-links .link span:hover{
+        color: green;
+        fill: green;
+      }
+
+      .menu-div .menu-links .link:hover svg path{
+        fill: green;
       }
 
       .menu-div .menu-links .link .icon{
           margin-right: 10px;
+          display: flex;
       }
 
       .menu-div .profile{
@@ -318,12 +396,90 @@
       }
       .menu-div .profile h2{
           color: #555;
+          font-weight: 600;
       }
       .menu-div .profile a{
           color: #5d0c00;
           font-size: 0.9rem;
       }
 
+      .logout button{
+        width: 100%;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        background: #CC353E;
+        color: #e0e0e0;
+      }
+
+      .logout .btn-group{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+
+      }
+
+      .logout .btn-group .login{
+        padding: 10px;
+        background:#CC353E;
+        color: #e3e3e3;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-weight: 600;
+      }
+
+      .logout .btn-group .register{
+        color:  #CC353E;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      /* accordion css */
+
+      .account{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #c8c8c8;
+      }
+
+      .account:hover span, .account:hover div a{
+        color: #333;
+      }
+
+      .account:hover div a:hover{
+        color: green;
+      }
+
+      .account .wrap{
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #c8c8c8;
+      }
+
+      .account-links{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 70px;
+        /* background: grey; */
+        padding: 10px;
+      }
+
+      .account-links a{
+        padding: 10px 0;
+        text-decoration: none;
+        display: flex;
+        color: #333;
+        align-items: center;
+      }
+
+      .account-links a:hover span{
+        font-weight: 600;
+      }
 /* ==== end of mobile menu content ====  */
 
 
@@ -390,4 +546,15 @@
 
 
 
+}
+
+@media screen and (max-width: 330px){
+
+  .account .account-links a{
+    font-size: 0.8rem;
+  }
+
+  .account .account-links a span{
+    font-size: 0.8rem;
+  }
 }

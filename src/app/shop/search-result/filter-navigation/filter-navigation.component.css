@@ -5,6 +5,7 @@
   display: none;
   padding: 20px;
   width: 100%;
+  z-index: 2;
   background: #fff;
 }
 

@@ -1,3 +1,10 @@
-<section class="products" >
-  <app-product *ngFor="let product of productList"  [product]="product" ></app-product>
+<section class="products">
+
+  <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 10, currentPage: p }"  [product]="product" ></app-product>
+
+
 </section>
+<div class="pagination" style=" justify-content: center;">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

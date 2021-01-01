@@ -1,0 +1,22 @@
+<section class="wrapper">
+<div class="menulist">
+
+  <ul class="list-group list-group">
+    <a href="#" [routerLink]="['update']" class="list-group-item list-group-item-action"  routerLinkActive="active">Edit Profile</a>
+    <a href="#" [routerLink]="['orders']" class="list-group-item list-group-item-action" routerLinkActive="active">My Orders</a>
+    <a href="#" [routerLink]="['saved']" class="list-group-item list-group-item-action" routerLinkActive="active">Saved Items</a>
+    <a href="#" [routerLink]="['change-password']" class="list-group-item list-group-item-action" routerLinkActive="active">Change Password</a>
+    <button (click)="logout()" class="list-group-item list-group-item-action list-group-item-danger">Logout</button>
+  </ul>
+
+
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+</section>

@@ -9,9 +9,11 @@
 .category-title{
   padding: 10px;
   /* background: #7eb54f; */
-  background: #e39e98;
+  /* background: #e39e98; */
+  background: #fff;
+  color: #212529;
   box-shadow: 0px 4px 10px -8px #adb5bd;
-  color: white;
+  /* color: white; */
   border-radius: 10px 10px 10px 0;
 }
 

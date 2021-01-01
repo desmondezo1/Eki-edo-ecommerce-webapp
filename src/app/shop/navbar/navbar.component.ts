@@ -1,4 +1,8 @@
+import { Observable } from 'rxjs';
+import { AuthService } from './../../service/auth.service';
+// import { UserService } from './../../service/user.service';
 import { Component, OnInit } from '@angular/core';
+import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
  hamburger = document.querySelector('.hamburger');
  mainBody = document.querySelector('body');
-constructor() { }
+
+ isLoggedIn$: Observable<boolean>;
+
+constructor(
+  // private userservice: UserService
+     private authService: AuthService
+) { }
 
 
 
@@ -59,7 +69,16 @@ constructor() { }
 
   // });
 
-  ngOnInit(): void {
+  logout(): any{
+    this.authService.logout();
   }
+
+  ngOnInit(): void {
+
+     this.authService.isLoggedIn.subscribe(a =>{
+        this.isLoggedIn$ =  a;
+      });
+
+}
 
 }
