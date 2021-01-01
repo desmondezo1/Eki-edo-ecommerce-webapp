@@ -503,6 +503,11 @@ a{
     flex-grow: 3;
   }
 
+  .dropdown-login{
+    padding: 10px;
+    min-width: 120px;
+  }
+
 }
 
 /* large phone  */
