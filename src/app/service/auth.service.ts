@@ -1,19 +1,38 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { UserService } from './user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user$: Observable<any>;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(
     private router: Router,
-    private auth: AngularFireAuth
-  ) { }
+    private auth: AngularFireAuth,
+    private usService: UserService,
+    private afs: AngularFirestore
+  ) {
+
+    this.user$ = this.auth.authState.pipe(
+      switchMap(user => {
+        if (user){
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
 
   get isLoggedIn(): Observable<any> {
     return this.loggedIn.asObservable();
@@ -36,8 +55,9 @@ export class AuthService {
 
 // --------------- REGISTER SERVICE ------------------
 
-  register(email, password): any{
-    this.auth.createUserWithEmailAndPassword(email, password).then(() => {
+  register(email, password, dataObj?): any{
+    this.auth.createUserWithEmailAndPassword(email, password).then((a) => {
+      this.usService.storeUser(a.user.uid, dataObj);
       this.loggedIn.next(true);
       this.router.navigate(['/profile']);
     });

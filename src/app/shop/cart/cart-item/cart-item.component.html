@@ -8,7 +8,7 @@
       <div class="item-name">
         <h1> {{cartItem.title}}</h1>
       </div>
-      <span class="remove">
+      <span class="remove" (click)="removeItem(cartItem)">
         <button>
           <span class="del-icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path d="M12 4h3c.6 0 1 .4 1 1v1H3V5c0-.6.5-1 1-1h3c.2-1.1 1.3-2 2.5-2s2.3.9 2.5 2zM8 4h3c-.2-.6-.9-1-1.5-1S8.2 3.4 8 4zM4 7h11l-.9 10.1c0 .5-.5.9-1 .9H5.9c-.5 0-.9-.4-1-.9L4 7z" fill="#626262"/><rect x="0" y="0" width="20" height="20" fill="rgba(0, 0, 0, 0)" /></svg>
@@ -23,18 +23,19 @@
   </div>
 
   <div class="quantity">
-    <form action="">
-      <select class="form-control form-control-sm">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+    <form action="" [formGroup]="qtyForm">
+      <select formControlName="quantity" (change)="changeQty($event)" class="form-control form-control-sm">
+        <!-- <option value="1" [attr.selected]="cartItem.qty === 1 ? 'selected':''" >1</option> -->
+        <option *ngFor="let opt of q" [value]="opt.id">{{opt.value}}</option>
+        <!-- <option value="2" [attr.selected]="cartItem.qty === 2 ? 'tslinj':''" >2</option>
+        <option value="3" [attr.selected]="cartItem.qty === 3 ? 'tslinj':''" >3</option>
+        <option value="4" [attr.selected]="cartItem.qty === 4 ? 'tslinj':''" >4</option>
+        <option value="5" [attr.selected]="cartItem.qty === 5 ? 'tslinj':''" >5</option>
+        <option value="6" [attr.selected]="cartItem.qty === 6 ? 'tslinj':''" >6</option>
+        <option value="7" [attr.selected]="cartItem.qty === 7 ? 'tslinj':''" >7</option>
+        <option value="8" [attr.selected]="cartItem.qty === 8 ? 'tslinj':''" >8</option>
+        <option value="9" [attr.selected]="cartItem.qty === 9 ? 'tslinj':''" >9</option>
+        <option value="10" [attr.selected]="cartItem.qty === 10 ? 'tslinj':''" >10</option> -->
       </select>
     </form>
   </div>
@@ -55,7 +56,7 @@
 
   <div class="sub-total">
     <span class="sub-price">
-      {{(cartItem.price * cartItem.qty) | currency:"NGN":"symbol-narrow": '2.0-0'}}
+      {{subtotal | currency:"NGN":"symbol-narrow": '2.0-0'}}
     </span>
   </div>
 

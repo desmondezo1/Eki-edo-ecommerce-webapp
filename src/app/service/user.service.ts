@@ -1,6 +1,8 @@
+import { User } from './../models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -8,24 +10,39 @@ import { Subject, Observable } from 'rxjs';
 })
 
 
+
 export class UserService {
 
-  // userSubject = new Subject();
+  private itemDoc: AngularFirestoreDocument<User>;
+  private usersCollection: AngularFirestoreCollection<any>;
+  private cartCollection: any;
+  item: Observable<User>;
+  items: Observable<any[]>;
 
+  constructor(
+    private afs: AngularFirestore
+  ){
+    this.usersCollection = afs.collection<any>('users');
 
-  // user = this.auth.currentUser;
-  // constructor(private auth: AngularFireAuth) { }
+  }
 
-  // getFullname(): Observable<any>{
-  //   const userObj: any = {};
-  //   this.auth.onAuthStateChanged(
-  //     user => {
-  //       userObj.fullname = user.displayName;
-  //     }
-  //   );
+  storeUser(uid, dataObj?: User): void{
+    this.usersCollection.doc(uid).set(dataObj);
+    // this.cartCollection.
+    // this.cartCollection = this.afs.collection<any>(`users/${uid}`).collection<any>('cart').set();
+    this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({
+      productId: '',
+      price: '',
+      quantity: '',
+    });
+  }
 
-  //   this.userSubject.next(userObj);
+  updateUser(){
 
-  //   return this.userSubject.asObservable();
-  // }
+  }
+
+  getUser(){
+
+  }
+
 }

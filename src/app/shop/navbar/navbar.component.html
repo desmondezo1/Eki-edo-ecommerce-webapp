@@ -45,7 +45,9 @@
       <div class="menu-div">
 
           <div class="profile" *ngIf="isLoggedIn$ ">
-              <h2>Desmond</h2>
+            <span *ngIf=" authService.user$ | async as user">
+             <h2> {{  user.firstName }} </h2>
+            </span>
               <a href="" [routerLink]="['/profile/update']">Edit </a>
           </div>
 
@@ -184,7 +186,10 @@
             Login/sign-up
           </span>
           <span class="icon-val" *ngIf="isLoggedIn$ ">
-            Desmond
+            <span *ngIf=" authService.user$ | async as user">
+              {{  user.firstName }}
+            </span>
+
           </span>
           <div class="dropdown-login">
             <a href="" *ngIf="!isLoggedIn$ " [routerLink]="['login']" >Login</a>

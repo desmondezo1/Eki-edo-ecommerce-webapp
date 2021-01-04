@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -40,7 +41,8 @@ import { ChangePasswordComponent } from './shop/account/change-password/change-p
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { NgAisModule } from 'angular-instantsearch';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     NgxPaginationModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    NgAisModule.forRoot(),
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

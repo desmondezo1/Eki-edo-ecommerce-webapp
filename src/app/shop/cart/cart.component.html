@@ -19,7 +19,7 @@
         </div>
 
         <span *ngIf="cartItems.length > 0  ">
-          <app-cart-item *ngFor="let cartItem of cartItems " [cartItem]="cartItem"></app-cart-item>
+          <app-cart-item (newQty)="updateQty($event);" (cartItemRemoved)="removeItemFromView()" *ngFor="let cartItem of cartItems " [cartItem]="cartItem"></app-cart-item>
         </span>
 
 <!-- ================================ -->

@@ -1,3 +1,4 @@
+
 import { AuthService } from './../../service/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+  
     ) { }
 
 
@@ -57,10 +59,9 @@ export class RegisterComponent implements OnInit {
 
 
    createUser(): any{
-      // const fullname = this.registerForm.value.firstName + ' ' + this.registerForm.value.lastName;
-      // const  phoneNumber = this.registerForm.value.phone;
       const {email, password} = this.registerForm.value;
-      this.authService.register(email, password);
+      const {firstName, lastName, phone, address, state, city, newsPermission} = this.registerForm.value;
+      this.authService.register(email, password, {email, firstName, lastName, phone, address, state, city, newsPermission});
     }
 
 

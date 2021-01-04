@@ -1,5 +1,97 @@
 
-<section class="search-result-section">
+
+
+
+
+<!-- <ais-instantsearch [config]="config">
+  <ais-search-box></ais-search-box>
+  <ais-refinement-list attribute="brand"></ais-refinement-list>
+  <ais-hits>
+    <ng-template let-hits="hits">
+      <ol class="ais-Hits-list">
+        <li *ngFor="let hit of hits" class="ais-Hits-item">
+         {{hit.name}}
+         <ais-highlight attribute="name" [hit]="hit">
+        </ais-highlight>
+         <img src="{{hit.image}}">
+         <script>
+           console.log(hit);
+         </script>
+        </li>
+      </ol>
+    </ng-template>
+  </ais-hits>
+  <ais-refinement-list attribute="brand"></ais-refinement-list>
+</ais-instantsearch>
+
+ -->
+
+<!--
+<div class="wrapper">
+   <div id="search-box" >
+
+  </div>
+
+
+
+   <div id="hit-s" style="">
+
+   </div>
+
+   <div id="refinement-list">
+
+   </div>
+</div> -->
+
+
+<div class="wrapper">
+
+<ais-instantsearch [config]="config">
+  <ais-search-box [searchAsYouType]="false"></ais-search-box>
+  <ais-stats></ais-stats>
+
+  <!-- <h3>Filter by price range:</h3> -->
+  <!-- <ais-range-slider attribute="price"></ais-range-slider> -->
+  <!-- <ais-refinement-list attribute="salePrice_range"></ais-refinement-list> -->
+  <!-- <ais-clear-refinements [autoHideContainer]="true" buttonLabel="Clear filter"></ais-clear-refinements> -->
+
+  <ais-hits>
+    <ng-template let-hits="hits" let-results="results">
+      <!-- Nothing found? -->
+      <div *ngIf="hits.length === 0">
+        😢 Nothing found for
+        <strong>{{results.query}}</strong>.
+      </div>
+
+      <div *ngFor="let hit of hits" class="result-card">
+        <h2>
+          <a [href]="hit.url" target="_blank">
+            <ais-highlight attribute="name" [hit]="hit">
+            </ais-highlight>
+          </a>
+        </h2>
+        <p>{{ hit.shortDescription }}</p>
+
+        <img [src]="hit.image" alt="{{ hit.name }} thumbnail">
+
+        <p>
+          <span class="price">{{ hit.salePrice | currency}}</span>
+        </p>
+      </div>
+    </ng-template>
+  </ais-hits>
+
+  <ais-pagination></ais-pagination>
+</ais-instantsearch>
+
+</div>
+
+
+
+
+
+<!-- after algolia -->
+<!-- <section class="search-result-section">
   <div class="pos-wrapper">
 
 
@@ -9,11 +101,11 @@
   </div>
 
     <div class="product-list">
-      <div class="sort">
+      <div class="sort"> -->
         <!-- <select class="form-control form-control-sm">
           <option>Small select</option>
         </select> -->
-          <div ngbDropdown class="d-inline-block">
+          <!-- <div ngbDropdown class="d-inline-block">
             <button class="button-sort" id="dropdownBasic1" ngbDropdownToggle>Sort By</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdownlist">
               <button ngbDropdownItem>Low > High price</button>
@@ -25,5 +117,5 @@
     </div>
 </section>
 
-<app-filter-navigation (scroll)="onScrollEvent($event)" #filterNav></app-filter-navigation>
+<app-filter-navigation (scroll)="onScrollEvent($event)" #filterNav></app-filter-navigation> -->
 
