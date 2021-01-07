@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Product } from 'src/app/models/product';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -10,12 +11,17 @@ import { updateLanguageServiceSourceFile } from 'typescript';
   providedIn: 'root'
 })
 export class MessengerService {
+  user$;
 
   product: Product[] = [];
   subject = new BehaviorSubject(this.product);
 
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) {
+    this.authService.user$.subscribe(a => this.user$ = a );
+   }
 
 
 
@@ -94,12 +100,14 @@ export class MessengerService {
   }
 
 
-  getCartTotal(): number{
+  getCartTotal(): any{
     const data = JSON.parse(localStorage.getItem('user-cart'));
     let cartTotal = 0;
     data.forEach(r => {
       cartTotal += ( +r.price * +r.qty);
     });
+
+    console.log('val', cartTotal);
     return cartTotal;
   }
 
@@ -110,5 +118,6 @@ export class MessengerService {
   getMsg(): Observable<any>{
     return this.subject.asObservable();
   }
+
 
 }

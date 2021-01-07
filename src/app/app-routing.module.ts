@@ -34,9 +34,10 @@ const routes: Routes = [
   ]},
   {path: 'register', component: RegisterComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToProfile }},
   {path: 'cart', component: CartComponent},
-  {path: 'search/:query', component: SearchResultComponent},
+  {path: 'search', component: SearchResultComponent},
   {path: 'p/:id', component: ProductDetailComponent  },
   {path: '**', component: PageNotFoundComponent },
+  {path: '404', component: PageNotFoundComponent },
 
 ];
 

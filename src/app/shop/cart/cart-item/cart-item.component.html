@@ -1,4 +1,4 @@
-<div class="cart-item">
+<div *ngIf="!isEmpty(cartItem); else cartempty" class="cart-item">
 
   <div class="item-wrap">
     <div class="img">
@@ -62,3 +62,10 @@
 
 
 </div>
+
+<ng-template #cartempty>
+<div class="alert alert-info">
+  Your cart is empty
+</div>
+
+</ng-template>

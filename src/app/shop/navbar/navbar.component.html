@@ -141,7 +141,7 @@
           </span>
 
           <div class="logout">
-            <Button *ngIf="isLoggedIn$ ">Logout</Button>
+            <Button *ngIf="isLoggedIn$ " (click)='logout(); clickEvn();'>Logout</Button>
 
             <div class="btn-group" *ngIf="!isLoggedIn$ ">
               <a class="login" [routerLink]="['/login']" (click)="clickEvn()">Login</a>

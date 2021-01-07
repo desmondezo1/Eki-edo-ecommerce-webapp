@@ -1,3 +1,4 @@
+import { CartService } from './../../../service/cart.service';
 import { MessengerService } from './../../../service/messenger.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -30,12 +31,23 @@ export class CartItemComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private MsgService: MessengerService
+    private cartService: CartService
   ) { }
 
+  isEmpty(obj): boolean {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+  }
+
   removeItem(cartItem): void{
-    this.MsgService.removeItem(cartItem);
-    this.cartItemRemoved.emit(true);
+    // this.MsgService.removeItem(cartItem);
+     this.cartService.removeProductfromUserCart(cartItem);
+     this.cartItemRemoved.emit(true);
+    //  window.location.reload();
   }
 
   buildForm(): void{
@@ -49,7 +61,7 @@ export class CartItemComponent implements OnInit {
 
   changeQty(e): void{
     console.log(e);
-    this.newQty.emit({prodId: this.cartItem.id, qty: e.target.value});
+    this.newQty.emit({fid: this.cartItem.fid, prodId: this.cartItem.id, qty: e.target.value});
     this.qtyForm.value.quantity = e.target.value;
     this.calculateSubtotal(e.target.value);
   }
@@ -64,7 +76,7 @@ export class CartItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log(this.cartItem);
     this.buildForm();
     this.calculateSubtotal();
   }

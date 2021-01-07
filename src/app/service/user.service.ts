@@ -1,3 +1,4 @@
+import { Product } from './../models/product';
 import { User } from './../models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
@@ -18,7 +19,14 @@ export class UserService {
   private cartCollection: any;
   item: Observable<User>;
   items: Observable<any[]>;
-
+  product = {
+    id: '' ,
+    title: '',
+    price: '',
+    image: '',
+    description: '',
+    categories: '',
+  };
   constructor(
     private afs: AngularFirestore
   ){
@@ -30,19 +38,21 @@ export class UserService {
     this.usersCollection.doc(uid).set(dataObj);
     // this.cartCollection.
     // this.cartCollection = this.afs.collection<any>(`users/${uid}`).collection<any>('cart').set();
-    this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({
-      productId: '',
-      price: '',
-      quantity: '',
-    });
+    // this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({
+    //   id: '' ,
+    //   title: '',
+    //   price: '',
+    //   image: '',
+    //   description: '',
+    //   categories: '',
+    // });
+
+    this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({});
   }
 
   updateUser(){
 
   }
 
-  getUser(){
-
-  }
 
 }

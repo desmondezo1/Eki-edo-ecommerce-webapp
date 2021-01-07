@@ -33,10 +33,12 @@ export class ProductDetailComponent implements OnInit {
 
 
     addToCart(): void {
-      this.cartService.addProductToCart(this.product).subscribe(
-      () => {
-        this.MsgServ.sendMsg(this.product);
-      });
+      this.cartService.addProductToCart(this.product);
+
+      // .subscribe(
+      // () => {
+      //   this.MsgServ.sendMsg(this.product);
+      // });
 
     }
 

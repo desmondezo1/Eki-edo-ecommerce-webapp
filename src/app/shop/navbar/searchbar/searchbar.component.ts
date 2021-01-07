@@ -25,10 +25,12 @@ export class SearchbarComponent implements OnInit {
   // };
 
   gotosearch(){
-      this.router.navigate(['search/q']);
+      this.router.navigate(['search']);
   }
 
-  constructor(private router: Router) { }
+
+
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     // const options = environment.algolia;
@@ -71,7 +73,6 @@ export class SearchbarComponent implements OnInit {
     //     container: "#hits"
     //   })
     // ]);
-
 
     // this.search.addWidgets([
     //   // 2. Create an interactive search box

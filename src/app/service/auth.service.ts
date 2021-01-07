@@ -28,14 +28,15 @@ export class AuthService {
         if (user){
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
-          return of(null);
+          return of(false);
         }
       })
     );
   }
 
   get isLoggedIn(): Observable<any> {
-    return this.loggedIn.asObservable();
+    // return this.loggedIn.asObservable();
+    return this.user$;
   }
 
 
@@ -73,6 +74,11 @@ export class AuthService {
         this.router.navigate(['login']);
 
     });
+  }
+
+
+  getUserData(){
+    return this.user$;
   }
 
 

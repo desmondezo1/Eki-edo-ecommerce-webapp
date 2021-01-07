@@ -3,8 +3,100 @@
   justify-content: center;
 }
 
+.wrapper{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 20px;
+}
 
-.search-result-section{
+ais-instantsearch{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+ais-search-box{
+  width: 70%;
+  align-self: center;
+}
+ais-stats{
+  align-self: center;
+}
+
+ais-pagination{
+  width: 100%;
+}
+
+
+ais-hits div.wrapper-results{
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  padding: 20px 0;
+}
+
+ais-hits .result-card{
+  /* display: flex; */
+  display: grid;
+  min-height: 190px;
+  /* grid-template-columns: 60px auto;
+  grid-template-columns: auto; */
+  grid-column-gap: 15px;
+  box-shadow: 0px 4px 15px -5px #d3d3d3;
+  padding: 15px;
+  border-radius: 10px;
+  grid-template-areas: "img title"
+                        "img desc" "img price";
+}
+
+ais-hits .result-card .title{
+ grid-area: title;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+ais-hits .result-card .title a{
+  color: #212529;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+ais-hits .result-card .img{
+  grid-area: img;
+
+}
+ais-hits .result-card img{
+  height: 100%;
+  width: 100%;
+}
+
+
+ais-hits .result-card .description{
+  grid-area: desc;
+}
+
+ais-hits .result-card .price{
+  grid-area: price;
+}
+
+ais-hits ais-highlight{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+/* .ais-SearchBox{
+  width: 100%;
+} */
+
+/* .search-result-section{
   display: flex;
   justify-content: space-around;
   padding: 20px;
@@ -57,37 +149,49 @@
 .dropdownlist{
   width: 100%;
   /* min-width: 100%; */
-  min-width: 100px;
+  /* min-width: 100px;
   background: grey;
   font-size: 0.8rem;
   border: none;
-}
+} */
 
-.dropdownlist button{
+/* .dropdownlist button{
   padding: 5px;
   white-space: pre-wrap;
-}
+} */
 
 /* tablet device */
 @media screen and (min-width: 768px) and (max-width: 1024px){
 
+  ais-search-box{
+    width: 85%;
+    align-self: center;
+  }
 
-  .pos-wrapper{
+  /* .pos-wrapper{
     position: relative;
     width: 30%;
   }
   .filter{
     max-width: 170px;
-  }
+  } */
 }
 
   /* large phone  */
 @media screen and (max-width:767px){
-    .pos-wrapper{
+    /* .pos-wrapper{
       display: none;
     }
     .sort{
       display: none;
+    } */
+
+    ais-search-box{
+      width: 100%;
+      align-self: center;
+    }
+    ais-stats{
+      align-self: end;
     }
 
 }

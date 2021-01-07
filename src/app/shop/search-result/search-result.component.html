@@ -46,8 +46,8 @@
 
 <div class="wrapper">
 
-<ais-instantsearch [config]="config">
-  <ais-search-box [searchAsYouType]="false"></ais-search-box>
+  <ais-instantsearch [config]="config">
+  <ais-search-box [searchAsYouType]="false" submitTitle="search"></ais-search-box>
   <ais-stats></ais-stats>
 
   <!-- <h3>Filter by price range:</h3> -->
@@ -63,25 +63,43 @@
         <strong>{{results.query}}</strong>.
       </div>
 
-      <div *ngFor="let hit of hits" class="result-card">
-        <h2>
-          <a [href]="hit.url" target="_blank">
-            <ais-highlight attribute="name" [hit]="hit">
-            </ais-highlight>
-          </a>
-        </h2>
-        <p>{{ hit.shortDescription }}</p>
+      <div class="wrapper-results">
+        <div *ngFor="let hit of hits" class="result-card">
 
-        <img [src]="hit.image" alt="{{ hit.name }} thumbnail">
+          <span class="img">
+            <img [src]="hit.image" alt="{{ hit.name }} thumbnail">
+          </span>
 
-        <p>
-          <span class="price">{{ hit.salePrice | currency}}</span>
-        </p>
+          <span class="title">
+            <h2>
+            <a [routerLink]="['/p/', hit.id]">
+              <ais-highlight attribute="name" [hit]="hit">
+              </ais-highlight>
+            </a>
+          </h2>
+          </span>
+
+          <span class="description">
+            <p>{{ hit.shortDescription }}</p>
+          </span>
+
+          <span class="price">
+            <p>
+              <span class="price">{{ hit.salePrice | currency}} N20000</span>
+            </p>
+          </span>
+
+
+
       </div>
+      </div>
+
     </ng-template>
   </ais-hits>
 
-  <ais-pagination></ais-pagination>
+  <ais-pagination [padding]="2" ></ais-pagination>
+
+
 </ais-instantsearch>
 
 </div>

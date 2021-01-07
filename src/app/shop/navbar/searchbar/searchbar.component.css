@@ -37,6 +37,17 @@ button{
     border-radius: 5px;
     margin: 0;
   }
+
+  input#searchbox::placeholder {
+    color: #f7f7f7;
+    font-weight: 300;
+    align-self: center;
+    /* display: flex; */
+    /* padding: 0 0 38px 0; */
+    /* align-items: center; */
+    font-size: 0.9rem;
+}
+
 }
 
 

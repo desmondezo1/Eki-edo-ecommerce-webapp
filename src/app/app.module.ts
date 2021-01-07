@@ -86,7 +86,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgAisModule.forRoot(),
-    AngularFirestoreModule.enablePersistence()
+    // AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

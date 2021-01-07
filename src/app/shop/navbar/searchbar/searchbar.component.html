@@ -1,9 +1,8 @@
-<form action="" (click)="gotosearch()">
-  <input disabled type="search" name="" id="searchbox" placeholder="Search...">
-  <button>Search</button>
-</form>
 
-
+  <form *ngIf="!router.url.includes('search')" action="" (click)="gotosearch()">
+    <input disabled type="search" name="" id="searchbox" placeholder="Search...">
+    <button>Search</button>
+  </form>
 
 
 
