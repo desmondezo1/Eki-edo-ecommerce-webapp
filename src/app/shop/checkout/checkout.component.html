@@ -1,0 +1,137 @@
+<section class="wrapper">
+  <div class="wrapper-div">
+
+
+    <div class="delivery-info">
+      <div class="title">
+         <h3>Delivery Addrress</h3>
+         <a class="edit" (click)="editAddress(editbtn)">Edit</a>
+         <a class="closeIt" (click)="closeEditAddress(editbtn)">Close</a>
+      </div>
+
+
+      <div class="update-address-form">
+        <form action=""  [formGroup]="addressForm" (ngSubmit)="onFormSubmit()" >
+          <div class="name">
+            <input type="text"  id="" formControlName="fullName" name="firstname" class="form-control">
+          </div>
+          <div class="address">
+            <textarea name="address" id="" formControlName="address"  class="form-control" ></textarea>
+          </div>
+
+          <div class="phone">
+             <input type="phone" formControlName="phone" name="phone"  id="" class="form-control">
+          </div>
+
+
+          <div class="radio-btn" style="display: none;">
+            <input class="form-check-input" type="radio" name="delivery_method" formControlName="delivery_method" id="Radio2" value="home_delivery">
+            <input class="form-check-input" type="radio" name="delivery_method" formControlName="delivery_method" id="Radio1" value="pickup_outlet">
+          </div>
+
+          <div class="submit-edit" #editbtn>
+            <button type="submit">Update Address</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+    <div class="delivery-method" #w>
+      <h3>Delivery Method</h3>
+      <div class="delivery-methods">
+        <label style="flex-grow: 1;" for="Radio1" class="label">
+          <span class="pickup" #pickup (click)="toggleClassOnPickup(pickup, home);"
+          >Pickup at our Outlet</span>
+        </label>
+
+        <label style="flex-grow: 1;" for="Radio2" class="label">
+          <span class="home" #home (click)="toggleClassOnHome(home, pickup)" >Home Delivery</span>
+        </label>
+
+      </div>
+
+    </div>
+
+    <div class="payment-method">
+      <h3>Payment Method</h3>
+      <div class="payment-methods">
+        <span class="method">
+          <img src="../../../assets/img/payst.svg" alt="">
+        </span>
+
+      </div>
+    </div>
+
+    <div class="pay">
+      <!-- <button
+      angular4-paystack
+      [key]="'pk_test_a20bdc9893a0202859761408baae4e082254f9fc'"
+      [email]="'mailexample@mail.com'"
+      [amount]="totalPrice"
+      [ref]="reference"
+      [class]="'btn btn-primary'"
+      (paymentInit)="paymentInit()"
+      (close)="paymentCancel()"
+      (callback)="paymentDone($event)"
+
+      >PROCEED TO PAYMENT {{totalPrice}}</button> -->
+      <div class="totaltopay">
+        <span style="color:#cccccc; font-weight: 500;" class="total-label">Total: </span>
+        <span> {{totalPrice | currency:"NGN":"symbol-narrow": '2.0-0'}}</span>
+      </div>
+
+      <button
+      angular4-paystack
+      [paystackOptions]="options"
+      (paymentInit)="paymentInit()"
+      (close)="paymentCancel()"
+      (callback)="paymentDone($event)"
+    >
+    PROCEED TO PAYMENT
+    </button>
+
+  </div>
+
+    <div class="cart-prev">
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel >
+          <ng-template ngbPanelTitle>
+            <span class="cart-title"> Cart </span>
+          </ng-template>
+          <ng-template ngbPanelContent style="background: #DADADA;">
+
+              <div class="cart-item" *ngFor="let cartItem of cartItems">
+                <div class="img">
+                  <img src="{{cartItem.image}}" alt="">
+                </div>
+
+                <div class="title">
+                  {{cartItem.title}}
+                </div>
+
+                <div class="subtotal">
+                  {{(cartItem.price * cartItem.qty) | currency:"NGN":"symbol-narrow": '2.0-0'}}
+                </div>
+            </div>
+
+
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+      <div class="cart-div">
+        <span class="total-title">
+          Total:
+        </span>
+        <span class="total-value">
+          {{totalPrice | currency:"NGN":"symbol-narrow": '2.0-0'}}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</section>

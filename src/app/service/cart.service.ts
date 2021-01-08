@@ -107,7 +107,7 @@ export class CartService {
   // from firestore cart
 
     getGrandTotal(): any{
-      this.userCart.subscribe((a): any=> {
+      this.userCart.subscribe((a): any => {
         console.log('new g', a)
 
         if (!this.isEmpty(a)){
@@ -125,6 +125,8 @@ export class CartService {
       // console.log('bf return',this.cartTotal);
 
     }
+
+  
 
 
 

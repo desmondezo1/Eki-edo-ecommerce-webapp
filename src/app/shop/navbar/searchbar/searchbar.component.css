@@ -18,6 +18,15 @@ input{
   padding: 5px 10px;
 }
 
+
+input#searchbox:disabled{
+  background-color: #fff;
+}
+
+input#searchbox:disabled::placeholder {
+  color: #afafaf;
+}
+
 button{
   border-radius: 10px;
   padding: 5px 20px;
@@ -37,6 +46,14 @@ button{
     border-radius: 5px;
     margin: 0;
   }
+
+
+input#searchbox:disabled{
+  background: #f6f6f6;
+}
+input#searchbox:disabled::placeholder {
+  color: #afafaf;
+}
 
   input#searchbox::placeholder {
     color: #f7f7f7;

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -26,7 +27,8 @@ export class CartComponent implements OnInit {
     private MsgService: MessengerService,
     private cartService: CartService,
     private authService: AuthService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private router: Router
     ) {
 
 
@@ -46,6 +48,10 @@ export class CartComponent implements OnInit {
     //       quantity: '',
     //     });
     // }
+
+    checkout(){
+      this.router.navigate(['/checkout']);
+    }
 
     updateQty(e): void{
       this.authService.user$.subscribe((a) => {

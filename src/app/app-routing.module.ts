@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { SavedItemsComponent } from './shop/account/saved-items/saved-items.component';
 import { OrdersComponent } from './shop/account/orders/orders.component';
 import { ChangePasswordComponent } from './shop/account/change-password/change-password.component';
@@ -22,6 +23,10 @@ const redirectLoggedInToProfile = () => redirectLoggedInTo(['/profile']);
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
+  {path: 'checkout', component: CheckoutComponent,
+         canActivate: [AngularFireAuthGuard],
+         data: { authGuardPipe: redirectUnauthorizedToLogin }
+    },
   {path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToProfile }},
   {path: 'profile', redirectTo: 'profile/update', pathMatch: 'full'},
   {path: 'profile', component: AccountComponent,

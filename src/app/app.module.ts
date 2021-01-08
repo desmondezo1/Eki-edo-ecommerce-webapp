@@ -42,7 +42,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgAisModule } from 'angular-instantsearch';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { Angular4PaystackModule } from 'angular4-paystack';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     UpdateProfileComponent,
     OrdersComponent,
     SavedItemsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgAisModule.forRoot(),
+    Angular4PaystackModule.forRoot('pk_test_a20bdc9893a0202859761408baae4e082254f9fc'),
     // AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe],

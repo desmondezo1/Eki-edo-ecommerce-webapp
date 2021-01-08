@@ -1,0 +1,347 @@
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper-div{
+  margin: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-areas:
+      "del-info cart"
+      "del-meth cart"
+      "pay-meth cart"
+      "pay cart";
+  grid-gap: 40px;
+  width: 85%;
+}
+
+
+.wrapper-div .delivery-info{
+  grid-area: del-info;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 20px 20px;
+
+}
+
+.wrapper-div .delivery-info .title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.wrapper-div .delivery-info .title h3{
+  font-size: 1.2rem;
+  color: #AAA9A9;
+}
+
+.wrapper-div .delivery-info .title a{
+  color: #CC353E;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wrapper-div .delivery-info .title a.closeIt{
+  display: none;
+  color: #CC353E;
+  font-weight: 600;
+  text-decoration: none;
+
+}
+
+.wrapper-div .delivery-info form .form-control{
+  outline: none;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.wrapper-div .delivery-info .update-address-form{
+  padding: 10px;
+}
+
+.wrapper-div .delivery-info .update-address-form .submit-edit{
+  justify-content: center;
+  display: flex;
+  display: none;
+}
+
+.submit-edit button{
+  background: #CC353E;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+
+.wrapper-div .delivery-method{
+  grid-area: del-meth;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 20px 20px;
+}
+
+.wrapper-div .delivery-method h3{
+  font-size: 1.2rem;
+  color: #AAA9A9;
+  margin-bottom: 20px;
+}
+
+.wrapper-div .delivery-method .delivery-methods{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.wrapper-div .delivery-method .delivery-methods .pickup,
+.wrapper-div .delivery-method .delivery-methods .home{
+  background: #FFFFFF;
+  border: 1px solid #D3D3D3;
+  font-weight: 600;
+  color: #B6ADAD;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 21px 19px;
+  /* box-sizing: border-box; */
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  min-width: 129px;
+  font-size: 0.9rem;
+}
+
+
+
+.wrapper-div .delivery-method .delivery-methods .home:hover,
+.wrapper-div .delivery-method .delivery-methods .pickup:hover{
+  border: 1px solid #42CE36;
+  color: #42CE36;
+  cursor: pointer;
+}
+
+.selected{
+  border: 1px solid #42CE36!important;
+  color: #42CE36!important;
+  cursor: pointer!important;
+}
+
+
+
+
+.wrapper-div .payment-method{
+  grid-area: pay-meth;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 30px 20px;
+
+}
+
+.wrapper-div .payment-method h3{
+  font-size: 1.2rem;
+  color: #AAA9A9;
+  margin-bottom: 20px;
+}
+
+.wrapper-div .payment-method .payment-methods{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+
+
+.wrapper-div .payment-method .payment-methods .method{
+background: #FFFFFF;
+  border: 1px solid #D3D3D3;
+  font-weight: 600;
+  color: #B6ADAD;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 21px 19px;
+  /* box-sizing: border-box; */
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  min-width: 129px;
+  font-size: 0.9rem;
+}
+
+.wrapper-div .payment-method .payment-methods .method img{
+  width: 50%;
+  height: 100%;
+}
+
+
+
+.wrapper-div .pay{
+  grid-area: pay;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgb(0 0 0 / 25%);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  justify-content: center;
+}
+
+.wrapper-div .pay .totaltopay{
+  font-size: 0.9rem;
+    font-weight: 700;
+    display: none;
+    padding-bottom: 10px;
+    /* display: flex; */
+    color: #539647;
+    justify-content: center;
+}
+
+
+
+
+.wrapper-div .pay button{
+  background: #539647;
+  flex-grow: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.wrapper-div .cart-prev{
+  grid-area: cart;
+}
+
+.wrapper-div .cart-prev .cart-div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper-div .cart-prev .cart-div .total-title{
+  color: #555353;
+  font-weight: 700;
+}
+
+.wrapper-div .cart-prev .cart-div .total-value{
+  color: #539647;
+  font-weight: 700;
+}
+
+.wrapper-div .cart-prev .cart-title{
+  text-decoration: none;
+  color: #acacac;
+  font-weight: 600;
+}
+
+:host .wrapper-div .cart-prev ngb-accordion /deep/ .card-body{
+  background: #DADADA;
+}
+
+
+
+
+.wrapper-div .cart-prev .cart-item{
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.wrapper-div .cart-prev .cart-item .img{
+  height: 56px;
+  width: 56px;
+  border-radius: 5px;
+}
+.wrapper-div .cart-prev .cart-item .img img{
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+}
+.wrapper-div .cart-prev .cart-item .title{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
+  color: #787676;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px;
+}
+.wrapper-div .cart-prev .cart-item .subtotal{
+  color: #00C45A;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.wrapper-div .cart-prev .cart-div{
+
+  padding: 30px 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  height: auto;
+
+}
+
+
+
+
+/* media queries */
+
+/* tablet device  */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
+  .wrapper-div .cart-prev .cart-item .img{
+    display: none;
+  }
+  .wrapper-div .cart-prev .cart-item .title{
+    max-width: 150px;
+  }
+
+}
+
+/* large phone screen  */
+@media screen and (max-width:767px){
+  .wrapper-div{
+    margin: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "del-info"
+        "del-meth"
+        "pay-meth"
+        "pay";
+        grid-gap: 40px;
+    width: 100%;
+  }
+
+
+  .wrapper-div .cart-prev{
+    display: none;
+
+  }
+
+  .wrapper-div .pay .totaltopay{
+    display: flex;
+    color: #81a87a;
+
+  }
+
+  .wrapper-div .pay .totaltopay .total-label{
+    margin-right: 10px;
+  }
+}

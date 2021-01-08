@@ -48,7 +48,10 @@ a{
   font-style: normal;
   font-weight: normal;
   color: #989898;
-  min-height: 69px;
+  /* min-height: 69px; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: center;
 
 }
@@ -83,7 +86,10 @@ a{
 @media screen and (min-width: 768px) and (max-width: 1024px){
 
   .product .name{
-    min-height: 90px;
+    /* min-height: 90px; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .product .name h1{
@@ -99,7 +105,10 @@ a{
   }
 
   .product .name{
-    min-height: 59px;
+    /* min-height: 59px; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .product .name h1{
     font-size: 1.1rem;
