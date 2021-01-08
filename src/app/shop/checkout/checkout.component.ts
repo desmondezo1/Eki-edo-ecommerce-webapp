@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  onFormSubmit(){
+  onFormSubmit(): void{
     console.log(this.addressForm.value);
   }
 
@@ -81,17 +81,17 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  paymentInit() {
+  paymentInit(): void {
     console.log('Payment initialized');
   }
 
 
-  paymentDone(ref: any) {
+  paymentDone(ref: any): void {
     this.title = 'Payment successfull';
     console.log(this.title, ref);
   }
 
-  paymentCancel() {
+  paymentCancel(): void {
     console.log('payment failed');
   }
 
@@ -105,7 +105,7 @@ export class CheckoutComponent implements OnInit {
     return true;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
 
     console.log(this.cartService.getGrandTotal());
@@ -129,7 +129,7 @@ export class CheckoutComponent implements OnInit {
       };
     });
 
-      this.closeEditAddress();
+    this.closeEditAddress();
 
     // this.cartService.getGrandTotal().subscribe(
     //   a => {
