@@ -7,7 +7,10 @@
           <input class="form-control" type="email"
           [ngClass]="{'is-invalid': loginForm.get('email').touched && loginForm.get('email').invalid}"
           formControlName="email" name="email"  placeholder="Email" required/>
-          <span class="invalid-feedback">Required</span>
+          <span class="invalid-feedback">
+            <span *ngIf="">Password or Email incorrect</span>
+            <span  *ngIf="">Required</span>
+          </span>
         </div>
         <div class="password-div">
           <input class="form-control" type="password"
@@ -23,9 +26,8 @@
             <input Class="check" type="checkbox"  formControlName="remember" name="remember" />
             <label for="check">Remeber Me</label>
           </div>
-
           <div class="forgot-pwd">
-            <a href="">Forgot password</a>
+            <a (click)="openModal(content)">Forgot password</a>
           </div>
         </div>
 
@@ -47,6 +49,38 @@
       </div>
 
     </div>
-  </section>
+
+
+
+
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reset Password</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" [formGroup]="resetPasswordForm"  method="post" (ngSubmit)="resetPassword()">
+          <div class="email-div">
+            <label for="email">Enter Your email</label>
+            <input class="form-control" type="email"
+            [ngClass]="{'is-invalid': resetPasswordForm.get('email').touched && resetPasswordForm.get('email').invalid}"
+            formControlName="email" id="email" name="email"  placeholder="Email" required/>
+            <span class="invalid-feedback">Required</span>
+          </div>
+          <br><br>
+          <div class="login-btn-div">
+            <button [ngClass]="resetPasswordForm.valid ? '' : 'disabled'" type="submit" >
+              Reset Password
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      </div> -->
+    </ng-template>
 
 

@@ -3,6 +3,8 @@ import { AuthService } from './../../service/auth.service';
 // import { UserService } from './../../service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap'
+import { CartService } from 'src/app/service/cart.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-navbar',
@@ -17,12 +19,13 @@ export class NavbarComponent implements OnInit {
 
 constructor(
   // private userservice: UserService
-     public authService: AuthService
+     public authService: AuthService,
+     private cartService: CartService
 ) { }
 
 
 
-
+  cartCount;
   clicked = false;
 
   clickEvn(): void{
@@ -77,6 +80,27 @@ constructor(
 
      this.authService.isLoggedIn.subscribe(a =>{
         this.isLoggedIn$ =  a;
+      });
+
+    //  this.cartCount = this.cartService.getCartCount();
+     console.log( this.cartService.getCartCount());
+    //  this.cartService.getCartCount();
+     this.cartService.getCartCount().subscribe(a => {
+        // this.cartCount = a;
+        console.log(a);
+
+        if (!this.cartService.isEmpty(a)){
+            this.cartCount = 0;
+            a.forEach(r => {
+              this.cartCount += +r.qty;
+            });
+            console.log(this.cartCount);
+            // return this.cartCount;
+          }else{
+            // return false;
+            this.cartCount = 0;
+          }
+
       });
 
 }

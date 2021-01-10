@@ -2,7 +2,7 @@
   Update Profile
 </h2>
 
-<form [formGroup]="profileForm" action="" method="post">
+<form [formGroup]="profileForm" action="" (ngSubmit)="updateProfile()" method="post">
 
   <div class="form-group">
     <div class="firstname-div">
@@ -61,6 +61,10 @@
     [ngClass]="{'is-invalid': profileForm.get('address').touched && profileForm.get('address').invalid}"
     formControlName="address" placeholder="Address"></textarea>
     <span class="invalid-feedback">Sorry,this field can't be empty</span>
+  </div>
+
+  <div class="form-group btn-wrapper">
+    <button type="submit">Update Account</button>
   </div>
 
 </form>

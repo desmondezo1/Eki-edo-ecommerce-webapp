@@ -182,8 +182,23 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
+.cart .cart-icon sup span{
+  padding: 6px;
+  bottom: 0;
+  font-size: 0.9rem;
+  font-size: 9px;
+  color: #fff;
+  background: #d55a53;
+  border-radius: 115px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -16px;
+}
 
 
 /* ------------ start of mobile styles -----------*/

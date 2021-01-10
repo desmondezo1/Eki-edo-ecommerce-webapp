@@ -13,7 +13,7 @@ import { HomebannerComponent } from './shop/home/homebanner/homebanner.component
 import { CategoriesComponent } from './shop/home/categories/categories.component';
 import { HomeComponent } from './shop/home/home.component';
 import { SearchbarComponent } from './shop/navbar/searchbar/searchbar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './shop/home/homebanner/carousel/carousel.component';
 import { ProductListComponent } from './shop/home/categories/category/product-list/product-list.component';
 import { ProductComponent } from './shop/home/categories/category/product-list/product/product.component';
@@ -44,6 +44,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NgAisModule } from 'angular-instantsearch';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
+import { UsermanagementComponent } from './auth/usermanagement/usermanagement.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { Angular4PaystackModule } from 'angular4-paystack';
     OrdersComponent,
     SavedItemsComponent,
     ChangePasswordComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    UsermanagementComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,7 @@ import { Angular4PaystackModule } from 'angular4-paystack';
     Angular4PaystackModule.forRoot('pk_test_a20bdc9893a0202859761408baae4e082254f9fc'),
     // AngularFirestoreModule.enablePersistence()
   ],
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe, NgbActiveModal, NgbModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

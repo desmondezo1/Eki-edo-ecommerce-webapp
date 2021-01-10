@@ -50,8 +50,8 @@ export class UserService {
     this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({});
   }
 
-  updateUser(){
-
+  updateUser(uid, data){
+    this.usersCollection.doc(uid).set(data, {merge: true});
   }
 
 

@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   isLoggedIn ;
   localstoredItems: any[];
   fireStoreProd;
-
+  cartCount;
   constructor(
     private MsgService: MessengerService,
     private cartService: CartService,
@@ -184,6 +184,25 @@ export class CartComponent implements OnInit {
       this.handleSubscription(a);
       return a;
      });
+
+    this.cartService.getCartCount().subscribe(a => {
+      // this.cartCount = a;
+      console.log(a);
+
+      if (!this.cartService.isEmpty(a)){
+          this.cartCount = 0;
+          a.forEach(r => {
+            this.cartCount += +r.qty;
+          });
+          console.log(this.cartCount);
+          // return this.cartCount;
+        }else{
+          // return false;
+          this.cartCount = 0;
+        }
+
+    });
+
 
     //  this.loadCartItemsFromFirestore();
 

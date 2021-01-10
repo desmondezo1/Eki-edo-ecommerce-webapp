@@ -77,9 +77,25 @@ export class AuthService {
   }
 
 
+
+
   getUserData(){
     return this.user$;
   }
+
+
+  /**
+   * Initiate the password reset process for this user
+   * @param email email of the user
+   */
+  resetPasswordInit(email: string): any {
+    return this.auth.sendPasswordResetEmail(
+      email,
+      { url: 'http://localhost:4200/login' });
+    }
+
+
+
 
 
 }

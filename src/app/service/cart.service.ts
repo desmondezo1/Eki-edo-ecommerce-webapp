@@ -24,7 +24,7 @@ export class CartService {
   cartForTotal;
   cartRef;
   test = [];
-  // totalVal = new Subject<any>();
+  cartCount;
 
   constructor(
     private http: HttpClient,
@@ -37,12 +37,17 @@ export class CartService {
       this.setLoginState();
     }
 
+
+
+
+
     // set the user's authentication state
     setLoginState(): void{
       this.authService.isLoggedIn.subscribe(res => {
         this.isLoggedIn = res;
       });
     }
+
 
     // set the user's cart in a variable
     setUserCart(): any{
@@ -103,13 +108,11 @@ export class CartService {
     }
 
 
-  // Get the total amount (price * qty) of all products
-  // from firestore cart
-
+    // Get the total amount (price * qty) of all products
+    // from firestore cart
     getGrandTotal(): any{
       this.userCart.subscribe((a): any => {
         console.log('new g', a)
-
         if (!this.isEmpty(a)){
           a.forEach(r => {
             console.log('new g', (r.price * r.qty));
@@ -117,17 +120,32 @@ export class CartService {
             console.log(this.cartTotal);
          });
           return this.cartTotal;
-
         } else{
           this.cartTotal = 0;
         }
       });
-      // console.log('bf return',this.cartTotal);
 
     }
 
-  
 
+  getCartCount(): any{
+      this.cartCount = 0;
+
+      return this.userCart;
+    //   const v = this.userCart.subscribe((a): any => {
+    //     if (!this.isEmpty(a)){
+    //       a.forEach(r => {
+    //         this.cartCount += +r.qty;
+    //       });
+    //       console.log(this.cartCount);
+    //       return this.cartCount;
+
+    //     }else{
+    //       return false;
+    //     }
+    // });
+    //   return v;
+  }
 
 
   // return data of the user's cart
@@ -218,6 +236,7 @@ export class CartService {
       item.then( console.log('updated!'));
     }
 
+  
 
 
 
