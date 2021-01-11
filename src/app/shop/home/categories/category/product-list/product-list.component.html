@@ -1,5 +1,7 @@
 <section class="products">
-
+  <ngx-spinner
+  color="#539467"
+  ></ngx-spinner>
   <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 10, currentPage: p }"  [product]="product" ></app-product>
 
 

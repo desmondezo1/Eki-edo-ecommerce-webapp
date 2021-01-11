@@ -1,6 +1,6 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +45,7 @@ import { NgAisModule } from 'angular-instantsearch';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { UsermanagementComponent } from './auth/usermanagement/usermanagement.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,9 +91,11 @@ import { UsermanagementComponent } from './auth/usermanagement/usermanagement.co
     AngularFireModule.initializeApp(environment.firebase),
     NgAisModule.forRoot(),
     Angular4PaystackModule.forRoot('pk_test_a20bdc9893a0202859761408baae4e082254f9fc'),
+    NgxSpinnerModule
     // AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe, NgbActiveModal, NgbModal],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

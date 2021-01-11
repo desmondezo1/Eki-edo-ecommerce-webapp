@@ -2,47 +2,54 @@
   My Orders
 </h2>
 
-<div class="cart-item">
+<div class="alert alert-info" *ngIf="orders.length === 0 || orders === undefined || orders === null; else orderedItems">
+  You haven't made any orders yet
+</div>
 
-  <div class="item-wrap">
-    <div class="img">
-      <img src="https://media.allure.com/photos/5c1933c41f198f2c6627f8c8/1:1/w_400%2Cc_limit/tatcha-violet-c-serum.jpg"
-       alt="">
-    </div>
-    <div class="item-details">
-      <div class="item-name">
-        <h1>
-          <!-- {{cartItem.title}} -->
-          New pair of air max shoes
-        </h1>
+
+<ng-template #orderedItems>
+  <div class="cart-item" *ngFor="let item of orders">
+
+    <div class="item-wrap">
+      <div class="img">
+        <img src="https://media.allure.com/photos/5c1933c41f198f2c6627f8c8/1:1/w_400%2Cc_limit/tatcha-violet-c-serum.jpg"
+         alt="">
       </div>
-      <span class="date">
-          20 OCT, 2020
+      <div class="item-details">
+        <div class="item-name">
+          <h1>
+            {{item.title}}
+          </h1>
+        </div>
+        <span class="date">
+            20 OCT, 2020
+        </span>
+      </div>
+
+    </div>
+
+    <div class="unit-price">
+      <div class="current-price">
+        <!-- {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
+      </div>
+      <div class="discount">
+        <div class="old-price">
+          N5000
+        </div>
+        <div class="save-price">
+          Savings: N3000
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-total">
+      <span class="sub-price">
+        {{(item.amountPaid) | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </span>
     </div>
 
+
   </div>
 
-  <div class="unit-price">
-    <div class="current-price">
-      <!-- {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
-    </div>
-    <div class="discount">
-      <div class="old-price">
-        N5000
-      </div>
-      <div class="save-price">
-        Savings: N3000
-      </div>
-    </div>
-  </div>
+</ng-template>
 
-  <div class="sub-total">
-    <span class="sub-price">
-      N500
-      <!-- {{(cartItem.price * cartItem.qty) | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
-    </span>
-  </div>
-
-
-</div>

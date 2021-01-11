@@ -1,6 +1,6 @@
 import { MessengerService } from './messenger.service';
 import { AuthService } from './auth.service';
-import { cartUrl } from './../config/api';
+import { cartUrl, ordersUrl } from './../config/api';
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from './../models/cart-item';
 import { Injectable } from '@angular/core';
@@ -33,7 +33,9 @@ export class CartService {
     private afs: AngularFirestore,
     private msgService: MessengerService
     ) {
-      this.setUserCart();
+      this.setUserCart()
+      this.sendItemsToOrders();
+      setTimeout(() => { this.sendItemsToOrders(); },2000)
       this.setLoginState();
     }
 
@@ -236,7 +238,27 @@ export class CartService {
       item.then( console.log('updated!'));
     }
 
-  
+    addProductToSaved(product): void{
+      console.log(this.userId);
+      if (this.userId){
+         this.afs.collection<any>('users').doc(this.userId).collection<any>('saved').add(product).then(
+           () => console.log('added to saved')
+         );
+      }
+
+    }
+
+    sendItemsToOrders(){
+      const url =  ordersUrl + this.userId;
+
+      this.getUserCart().subscribe(
+        products => {
+          this.http.post<any>(url , products);
+        });
+
+    }
+
+
 
 
 

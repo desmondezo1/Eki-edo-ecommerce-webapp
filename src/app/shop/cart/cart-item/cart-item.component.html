@@ -1,6 +1,6 @@
-<div *ngIf="!isEmpty(cartItem); else cartempty" class="cart-item">
+<div *ngIf="cartItem.title || cartItem.image; else cartempty" class="cart-item">
 
-  <div class="item-wrap">
+  <div *ngIf="cartItem" class="item-wrap">
     <div class="img">
       <img src="{{cartItem.image}}" alt="">
     </div>
@@ -64,8 +64,8 @@
 </div>
 
 <ng-template #cartempty>
-<div class="alert alert-info">
+<!-- <div class="alert alert-info">
   Your cart is empty
-</div>
+</div> -->
 
 </ng-template>

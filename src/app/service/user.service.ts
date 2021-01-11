@@ -17,6 +17,9 @@ export class UserService {
   private itemDoc: AngularFirestoreDocument<User>;
   private usersCollection: AngularFirestoreCollection<any>;
   private cartCollection: any;
+  savedCollection;
+  ordersCollection;
+
   item: Observable<User>;
   items: Observable<any[]>;
   product = {
@@ -47,11 +50,30 @@ export class UserService {
     //   categories: '',
     // });
 
-    this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({});
+    // this.cartCollection = this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({});
+    // this.savedCollection = this.afs.collection<any>('users').doc(uid).collection<any>('saved').add({});
+    // this.ordersCollection = this.afs.collection<any>('users').doc(uid).collection<any>('orders').add({});
   }
 
   updateUser(uid, data){
-    this.usersCollection.doc(uid).set(data, {merge: true});
+    this.usersCollection.doc(uid).set(data, {merge: true}).then(
+      ()=> console.log('ie don update o!')
+    );
+  }
+
+  updateAddress(uid, data){
+    this.usersCollection.doc(uid).update(data).then(
+      ()=> console.log('ie don update o!')
+    );
+  }
+
+  // createUserCart(uid, obj): void{
+  //   // create a cart or adds to a cart
+  //   this.afs.collection<any>('users').doc(uid).collection<any>('cart').add({});
+  // }
+
+  addItemtoSaved(){
+
   }
 
 

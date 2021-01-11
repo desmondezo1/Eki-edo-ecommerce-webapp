@@ -1,3 +1,4 @@
+import { MessengerService } from './../../service/messenger.service';
 import { Observable } from 'rxjs';
 import { AuthService } from './../../service/auth.service';
 // import { UserService } from './../../service/user.service';
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
 constructor(
   // private userservice: UserService
      public authService: AuthService,
-     private cartService: CartService
+     private cartService: CartService,
+     private MsgService: MessengerService
 ) { }
 
 
@@ -59,6 +61,42 @@ constructor(
   }
 
 
+  calculateCartCountFromFirestore(): void{
+    this.cartService.getCartCount().subscribe(a => {
+      // this.cartCount = a;
+      console.log(a);
+      if (!this.cartService.isEmpty(a)){
+          this.cartCount = 0;
+          a.forEach(r => {
+            this.cartCount += +r.qty;
+          });
+          console.log(this.cartCount);
+          // return this.cartCount;
+        }else{
+          // return false;
+          this.cartCount = 0;
+        }
+    });
+  }
+  calculateCartCountFromLocalstorage(): void{
+    console.log('local store');
+    this.MsgService.getCartCount().subscribe(a =>{
+      this.cartCount = a;
+      console.log('A --', a);
+    });
+  }
+
+  getCartCount(loginStat): any{
+    if (loginStat){
+      console.log('Fire store')
+      this.calculateCartCountFromFirestore();
+    }else{
+      console.log('local store')
+      this.calculateCartCountFromLocalstorage();
+    }
+  }
+
+
 
 
   // hamburger.addEventListener('click',()=>{
@@ -80,28 +118,29 @@ constructor(
 
      this.authService.isLoggedIn.subscribe(a =>{
         this.isLoggedIn$ =  a;
+        this.getCartCount(a);
       });
 
-    //  this.cartCount = this.cartService.getCartCount();
-     console.log( this.cartService.getCartCount());
-    //  this.cartService.getCartCount();
-     this.cartService.getCartCount().subscribe(a => {
-        // this.cartCount = a;
-        console.log(a);
 
-        if (!this.cartService.isEmpty(a)){
-            this.cartCount = 0;
-            a.forEach(r => {
-              this.cartCount += +r.qty;
-            });
-            console.log(this.cartCount);
-            // return this.cartCount;
-          }else{
-            // return false;
-            this.cartCount = 0;
-          }
+    // //  this.cartCount = this.cartService.getCartCount();
+    //  console.log( this.cartService.getCartCount());
+    // //  this.cartService.getCartCount();
+    //  this.cartService.getCartCount().subscribe(a => {
+    //     // this.cartCount = a;
+    //     console.log(a);
+    //     if (!this.cartService.isEmpty(a)){
+    //         this.cartCount = 0;
+    //         a.forEach(r => {
+    //           this.cartCount += +r.qty;
+    //         });
+    //         console.log(this.cartCount);
+    //         // return this.cartCount;
+    //       }else{
+    //         // return false;
+    //         this.cartCount = 0;
+    //       }
 
-      });
+    //   });
 
 }
 

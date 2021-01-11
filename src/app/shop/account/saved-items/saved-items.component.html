@@ -2,54 +2,64 @@
   My Saved Items
 </h2>
 
-<div class="cart-item">
 
-  <div class="item-wrap">
-    <div class="img">
-      <img src="https://media.allure.com/photos/5c1933c41f198f2c6627f8c8/1:1/w_400%2Cc_limit/tatcha-violet-c-serum.jpg"
-       alt="">
-    </div>
-    <div class="item-details">
-      <div class="item-name">
-        <h1>
-          Testing the waters of watery water
-          <!-- {{cartItem.title}} -->
-        </h1>
-      </div>
-      <span class="remove">
-        <button>
-          <span class="del-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path d="M12 4h3c.6 0 1 .4 1 1v1H3V5c0-.6.5-1 1-1h3c.2-1.1 1.3-2 2.5-2s2.3.9 2.5 2zM8 4h3c-.2-.6-.9-1-1.5-1S8.2 3.4 8 4zM4 7h11l-.9 10.1c0 .5-.5.9-1 .9H5.9c-.5 0-.9-.4-1-.9L4 7z" fill="#626262"/><rect x="0" y="0" width="20" height="20" fill="rgba(0, 0, 0, 0)" /></svg>
-          </span>
-          <span class="icon-val">
-            Remove
-          </span>
-          </button>
-      </span>
-    </div>
-
-  </div>
-
-  <div class="price-tag">
-      N3000
-  </div>
-
-
-  <div class="unit-price">
-    <div class="current-price">
-      <!-- {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
-    </div>
-    <div class="discount">
-      <div class="old-price">
-        N5000
-      </div>
-      <div class="save-price">
-        Savings: N3000
-      </div>
-    </div>
-  </div>
-
-
-
-
+<div *ngIf="items.length === 0 || items === undefined || items === null; else savedItems" class="alert alert-info" >
+  No saved items
 </div>
+
+
+<ng-template #savedItems>
+  <div class="cart-item" *ngFor="let item of items ">
+
+    <div class="item-wrap">
+      <div class="img">
+        <img src="{{item.image}}"
+         alt="">
+      </div>
+      <div class="item-details">
+        <div class="item-name">
+          <h1>
+            {{item.title}}
+            <!-- {{cartItem.title}} -->
+          </h1>
+        </div>
+        <span class="remove">
+          <button (click)="removeSavedItem(item)">
+            <span class="del-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path d="M12 4h3c.6 0 1 .4 1 1v1H3V5c0-.6.5-1 1-1h3c.2-1.1 1.3-2 2.5-2s2.3.9 2.5 2zM8 4h3c-.2-.6-.9-1-1.5-1S8.2 3.4 8 4zM4 7h11l-.9 10.1c0 .5-.5.9-1 .9H5.9c-.5 0-.9-.4-1-.9L4 7z" fill="#626262"/><rect x="0" y="0" width="20" height="20" fill="rgba(0, 0, 0, 0)" /></svg>
+            </span>
+            <span class="icon-val">
+              Remove
+            </span>
+            </button>
+        </span>
+      </div>
+
+    </div>
+
+    <div class="price-tag">
+      {{item.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+    </div>
+
+  <!--
+    <div class="unit-price">
+      <div class="current-price">
+        {{item.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+      </div>
+      <div class="discount">
+        <div class="old-price">
+          N5000
+        </div>
+        <div class="save-price">
+          Savings: N3000
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+  </div>
+
+</ng-template>
+
