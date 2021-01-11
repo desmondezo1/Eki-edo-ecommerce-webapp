@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-cart',
@@ -28,18 +29,9 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private authService: AuthService,
     private auth: AngularFireAuth,
-    private router: Router
-    ) {
-
-
-
-
-    //  this.isLoggedIn.map(
-    //   this.handleSubscription()
-    //  );
-
-
-    }
+    private router: Router,
+    private spinner: NgxSpinnerService
+    ) {}
 
 
 
@@ -98,10 +90,13 @@ export class CartComponent implements OnInit {
         console.log(this.isLoggedIn)
         // getCartData from server
         this.loadCartItemsFromFirestore();
+          this.spinner.hide();
+
       }else{
         console.log(this.localstoredItems);
         // if localstorage is empty get observable stream
         this.loadCartItemsFromLocalStorage();
+        this.spinner.hide();
       }
     }
 
@@ -176,32 +171,69 @@ export class CartComponent implements OnInit {
     }
 
 
+    isEmpty(obj): boolean {
+      for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+              return false;
+          }
+      }
+      return true;
+    }
+
+    calculateCartCountFromFirestore(): void{
+      this.cartService.getCartCount().subscribe(a => {
+        // this.cartCount = a;
+        console.log(a);
+        if (!this.cartService.isEmpty(a)){
+            this.cartCount = 0;
+            a.forEach(r => {
+              this.cartCount += +r.qty;
+            });
+            console.log(this.cartCount);
+            // return this.cartCount;
+          }else{
+            // return false;
+            this.cartCount = 0;
+          }
+      });
+    }
+
+
+    calculateCartCountFromLocalstorage(): void{
+      console.log('local store');
+      this.MsgService.getCartCount().subscribe(a =>{
+        this.cartCount = a;
+        console.log('A --', a);
+      });
+    }
+
+
+
+    getCartCount(loginStat): any{
+      if (loginStat){
+        console.log('Fire store')
+        this.calculateCartCountFromFirestore();
+      }else{
+        console.log('local store')
+        this.calculateCartCountFromLocalstorage();
+      }
+    }
+
+
 
   ngOnInit(): void {
+
+    this.spinner.show();
 
     this.isLoggedIn =  this.authService.user$.subscribe((a) => {
       console.log('a is', a);
       this.handleSubscription(a);
+      this.getCartCount(a);
       return a;
+
      });
 
-    this.cartService.getCartCount().subscribe(a => {
-      // this.cartCount = a;
-      console.log(a);
 
-      if (!this.cartService.isEmpty(a)){
-          this.cartCount = 0;
-          a.forEach(r => {
-            this.cartCount += +r.qty;
-          });
-          console.log(this.cartCount);
-          // return this.cartCount;
-        }else{
-          // return false;
-          this.cartCount = 0;
-        }
-
-    });
 
 
     //  this.loadCartItemsFromFirestore();

@@ -1,7 +1,7 @@
 import { AuthService } from './auth.service';
 import { Product } from 'src/app/models/product';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { stringify } from '@angular/compiler/src/util';
 import { map } from 'rxjs/operators';
 // import { lstat } from 'fs';
@@ -109,6 +109,17 @@ export class MessengerService {
 
     console.log('val', cartTotal);
     return cartTotal;
+  }
+
+  getCartCount(): Observable<any>{
+    const data = JSON.parse(localStorage.getItem('user-cart'));
+    let cartCount = 0;
+    data.forEach(r => {
+      cartCount +=  +r.qty;
+    });
+
+    console.log('val', cartCount);
+    return of(cartCount);
   }
 
 

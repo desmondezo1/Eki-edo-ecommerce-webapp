@@ -30,6 +30,7 @@
     "instantsearch.css": "^7.4.5",
     "instantsearch.js": "^4.9.2",
     "ngx-pagination": "^5.0.0",
+    "ngx-spinner": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -1,8 +1,13 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from './../../service/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from './../../service/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { PaystackOptions } from 'angular4-paystack';
-
+import { UserService } from 'src/app/service/user.service';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-checkout',
@@ -14,28 +19,54 @@ export class CheckoutComponent implements OnInit {
   addressForm: FormGroup;
   reference = '';
   title;
+  userData;
   cartItems;
+  userId;
   totalPrice: any;
 
   options: PaystackOptions;
 
   constructor(
     private cartService: CartService,
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private auth: AngularFireAuth,
+    private router: Router,
+    private spinner: NgxSpinnerService
+
   ) {
+
+
     this.addressForm = this.builder.group({
-      fullName: 'Dr. Ojile',
-      address: 'Faculty of Social Sciences, NDU, Amasoma Bayelsa, AMASSOMA, Bayelsa',
-      phone: '+23408162099369',
+      fullName: '',
+      address: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
       delivery_method: ''
+    });
+
+    this.auth.authState.subscribe( user => {
+      this.userId = user.uid;
+    });
+
+    this.userData = this.authService.user$.subscribe(user => {
+      const usr = {
+        fullName : `${user.firstName} ${user.lastName}`,
+        address: user.address,
+        phone: user.phone
+      };
+      this.addressForm.patchValue(usr);
+      console.log('usr ==', usr);
+      console.log(user);
     });
   }
 
   onFormSubmit(): void{
     console.log(this.addressForm.value);
+    this.updateUserAddress();
   }
 
-  editAddress(editbtn): void{
+  editAddress(editbtn: HTMLElement): void{
     this.addressForm.get('fullName').enable();
     this.addressForm.get('phone').enable();
     this.addressForm.get('address').enable();
@@ -53,12 +84,14 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  closeEditAddress(editbtn?: any): void{
+  closeEditAddress(editbtn?: HTMLElement): void{
     this.addressForm.get('fullName').disable();
     this.addressForm.get('phone').disable();
     this.addressForm.get('address').disable();
     this.addressForm.get('delivery_method').disable();
-    editbtn.style.display = 'none';
+    if (editbtn){
+      editbtn.style.display = 'none';
+    }
     const formControl = document.querySelectorAll<HTMLElement>('.form-control');
     formControl.forEach((a: HTMLElement) => {
       a.style.border = 'none';
@@ -89,11 +122,31 @@ export class CheckoutComponent implements OnInit {
   paymentDone(ref: any): void {
     this.title = 'Payment successfull';
     console.log(this.title, ref);
+    this.cartService.sendItemsToOrders();
   }
 
   paymentCancel(): void {
     console.log('payment failed');
   }
+
+  updateUserAddress(): void{
+    let fullName = this.addressForm.value.fullName;
+    const address = this.addressForm.value.address;
+    const phone = this.addressForm.value.phone;
+    fullName = fullName.split(' ');
+
+    const data = {
+      firstName: fullName[0],
+      lastName:  fullName[1],
+      address,
+      phone
+    };
+    // this.userService.updateUser(this.userId, data);
+    console.log(this.userId);
+    this.userService.updateAddress(this.userId, data);
+  }
+
+
 
   // check if any object is empty
   isEmpty(obj): boolean {
@@ -105,7 +158,23 @@ export class CheckoutComponent implements OnInit {
     return true;
   }
 
+
+
+
+
+
   ngOnInit(): void {
+    this.spinner.show();
+
+    this.cartService.getUserCart().subscribe(a => {
+      if(a.length <= 0){
+        this.router.navigate(['']);
+      }
+    });
+
+
+
+
     this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
 
     console.log(this.cartService.getGrandTotal());
@@ -120,16 +189,21 @@ export class CheckoutComponent implements OnInit {
           console.log('new g', (r.price * r.qty));
           this.totalPrice += ( +r.price * +r.qty);
           console.log(Math.round(this.totalPrice));
-       })
+       });
       }
       this.options = {
         amount: (Math.round(this.totalPrice) * 100),
         email: 'user@mail.com',
         ref: `${Math.ceil(Math.random() * 10e10)}`
       };
+
+      this.spinner.hide();
     });
 
     this.closeEditAddress();
+
+
+
 
     // this.cartService.getGrandTotal().subscribe(
     //   a => {

@@ -91,7 +91,7 @@ export class AuthService {
   resetPasswordInit(email: string): any {
     return this.auth.sendPasswordResetEmail(
       email,
-      { url: 'http://localhost:4200/login' });
+      { url: 'https://ekiedong.com/login' });
     }
 
 
