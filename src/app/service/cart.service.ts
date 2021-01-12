@@ -198,6 +198,7 @@ export class CartService {
 
       }else{
         this.msgService.sendMsg(product);
+        console.log(product);
       }
     // return this.http.post(cartUrl, { product });
   }

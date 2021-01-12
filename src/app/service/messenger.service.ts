@@ -23,10 +23,16 @@ export class MessengerService {
     this.authService.user$.subscribe(a => this.user$ = a );
    }
 
-
+   checkForProductsInLocalstorage(){
+     const cart = JSON.parse(localStorage.getItem('user-cart'));
+     if(cart){
+       this.product = cart;
+     }
+   }
 
 
   sendMsg(product: Product): void {
+    this.checkForProductsInLocalstorage();
     let present = false;
     // this.product.push(product);
     if (this.product.length > 0){
@@ -60,7 +66,7 @@ export class MessengerService {
 
           this.product.push({
             id: product.id,
-            title: Product.name,
+            title: product.title,
             description: '',
             price: product.price,
             image: product.image,
@@ -85,7 +91,7 @@ export class MessengerService {
     const newArray = localstoredItems.filter(item => item.id !== cartitem.id);
     localStorage.setItem('user-cart' , JSON.stringify(newArray));
     console.log('item new array', newArray);
-    // window.location.reload();
+    document.location.reload();
   }
 
 
