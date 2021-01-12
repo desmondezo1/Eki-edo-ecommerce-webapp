@@ -42,7 +42,7 @@ export class MessengerService {
         if(!present){
             this.product.push({
               id: product.id,
-              title: Product.name,
+              title: product.title,
               description: '',
               price: product.price,
               image: product.image,
