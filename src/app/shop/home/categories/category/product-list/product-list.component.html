@@ -1,7 +1,15 @@
+<span *ngIf="noInternetConnection" class="alert alert-info"
+style="
+    position: fixed;
+    top: 10px;
+    z-index: 1000;
+    width: 50%;
+    text-align: center;
+    opacity: 0.9;
+">{{connectionMsg}}</span>
+
 <section class="products">
-  <ngx-spinner
-  color="#539467"
-  ></ngx-spinner>
+
   <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 10, currentPage: p }"  [product]="product" ></app-product>
 
 
@@ -10,3 +18,7 @@
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
 
+ <ngx-spinner
+  color="#539467"
+  bdColor="rgb(235 255 242)"
+  ></ngx-spinner>

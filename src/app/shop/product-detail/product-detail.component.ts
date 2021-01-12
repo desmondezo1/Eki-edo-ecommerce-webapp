@@ -8,7 +8,7 @@ import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from "ngx-spinner";
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,10 +25,13 @@ export class ProductDetailComponent implements OnInit {
     private PrdService: ProductService,
     private route: ActivatedRoute,
     private http: HttpClient,
+    private toastr: ToastrService,
     private cartService: CartService,
     private savedService: SavedService,
     private spinner: NgxSpinnerService
-    ) { }
+    ) {
+      this.spinner.show();
+    }
 
     // addToCart(): void{
     //   this.MsgServ.sendMsg(this.product);
@@ -38,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
 
     addToCart(): void {
       this.cartService.addProductToCart(this.product);
+      this.toastr.success(`${this.product.title}`, 'Added to Cart');
 
       // .subscribe(
       // () => {
@@ -55,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
     // }
 
     getSingleProduct(id: number): any{
-      this.spinner.show();
+
 
       return this.PrdService.getProductFromServer(id).subscribe(
         (res) => {
@@ -82,6 +86,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
 
 
+    // this.toastr.success(`${this.product.title} added to cart `, 'Cart');
      this.getSingleProduct(
       // tslint:disable-next-line: no-string-literal
       +this.route.snapshot.params['id']

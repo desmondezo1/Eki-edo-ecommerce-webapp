@@ -1,21 +1,22 @@
 <section class="wrapper">
   <ngx-spinner
   color="#539467"
+  bdColor="rgb(235 255 242)"
   ></ngx-spinner>
   <div class="img-addcart">
       <div class="img-gal">
-        <app-product-image-gallery [img]="product.image"></app-product-image-gallery>
+        <app-product-image-gallery [img]="product?.image"></app-product-image-gallery>
       </div>
 
       <div class="prod-cta">
 
           <div class="details">
             <div class="product-name">
-              <H1>{{product.title}}</H1>
+              <H1>{{product?.title}}</H1>
             </div>
 
             <div class="product-price">
-              <h3 class="price">{{product.price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
+              <h3 class="price">{{product?.price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
               <div class="discount">
                 <h4 class="old-price">N5,000</h4>
                 <span class="perc-off">-40%</span>
@@ -69,7 +70,7 @@
   <div class="product-details">
       <h2>Prod details</h2>
       <p>
-        {{product.description}}
+        {{product?.description}}
       </p>
   </div>
 

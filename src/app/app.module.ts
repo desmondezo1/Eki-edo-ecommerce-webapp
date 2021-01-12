@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
@@ -46,6 +46,10 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { UsermanagementComponent } from './auth/usermanagement/usermanagement.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {ConnectionServiceModule} from 'ng-connection-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +88,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    CommonModule,
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
@@ -91,7 +96,13 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AngularFireModule.initializeApp(environment.firebase),
     NgAisModule.forRoot(),
     Angular4PaystackModule.forRoot('pk_test_a20bdc9893a0202859761408baae4e082254f9fc'),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule,// required animations module
+    ConnectionServiceModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      timeOut: 1000
+    }), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     // AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe, NgbActiveModal, NgbModal],

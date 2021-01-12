@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
     private authService: AuthService,
     private auth: AngularFireAuth,
     private router: Router,
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService
     ) {}
 
@@ -103,6 +105,8 @@ export class CartComponent implements OnInit {
     // this function reruns the carttotal calculation
     //  when an item is removed from cart in local storage
     removeItemFromView(): void{
+
+      this.toastr.info(`Item Removed`, 'Cart');
       // this.showProductsInComponent(this.localstoredItems);
       // this.handleSubscription();
       // this.cartTotal = this.MsgService.getCartTotal();
