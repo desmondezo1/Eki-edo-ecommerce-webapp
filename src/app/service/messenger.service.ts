@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Product } from 'src/app/models/product';
 import { Injectable } from '@angular/core';
@@ -18,7 +19,8 @@ export class MessengerService {
 
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.authService.user$.subscribe(a => this.user$ = a );
    }
@@ -82,7 +84,7 @@ export class MessengerService {
     this.subject.next(this.product);
     console.log('msg service cart', this.product);
     localStorage.setItem('user-cart' , JSON.stringify(this.product));
-
+    document.location.reload();
   }
 
 
@@ -91,7 +93,12 @@ export class MessengerService {
     const newArray = localstoredItems.filter(item => item.id !== cartitem.id);
     localStorage.setItem('user-cart' , JSON.stringify(newArray));
     console.log('item new array', newArray);
-    document.location.reload();
+    // document.location.reload();
+
+    const cPath = location.pathname;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([cPath]);
+  });
   }
 
 
