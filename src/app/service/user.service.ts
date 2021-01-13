@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -31,7 +32,8 @@ export class UserService {
     categories: '',
   };
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private toastr: ToastrService,
   ){
     this.usersCollection = afs.collection<any>('users');
 
@@ -57,13 +59,13 @@ export class UserService {
 
   updateUser(uid, data){
     this.usersCollection.doc(uid).set(data, {merge: true}).then(
-      ()=> console.log('ie don update o!')
+      ()=> this.toastr.success('Updated!')
     );
   }
 
   updateAddress(uid, data){
     this.usersCollection.doc(uid).update(data).then(
-      ()=> console.log('ie don update o!')
+      ()=> this.toastr.success('Updated!')
     );
   }
 

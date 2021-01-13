@@ -49,14 +49,14 @@
 
 
      <!-- mobile menu  -->
-     <section class="menu-section">
-      <div class="menu-div">
+     <section class="menu-section" >
+      <div class="menu-div" style="z-index: 1;">
 
           <div class="profile" *ngIf="isLoggedIn$ ">
             <span *ngIf=" authService.user$ | async as user" class="firstname" style="color: #ff7f7f;">
              <h2> {{  user.firstName }} </h2>
             </span>
-              <a href="" [routerLink]="['/profile/update']">Edit </a>
+              <a href="" [routerLink]="['/profile/update']" (click)="clickEvn()">Edit </a>
           </div>
 
           <div class="menu-links">
@@ -92,7 +92,7 @@
                           </a>
 
 
-                        <a [routerLink]="['/profile/change-password']" >Change Password</a>
+                        <a [routerLink]="['/profile/change-password']" (click)="clickEvn()">Change Password</a>
 
                     </div>
 
@@ -160,6 +160,15 @@
 
 
       </div>
+      <div class="backdrp"
+      style="
+      position: absolute;
+      width: 100%;
+      background: #dc354508;
+      height: 100%;
+      "
+      (click)="clickEvn()"
+      ></div>
   </section>
 
 

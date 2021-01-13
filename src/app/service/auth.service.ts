@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from '../models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
     private router: Router,
     private auth: AngularFireAuth,
     private usService: UserService,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private toastr: ToastrService,
   ) {
 
     this.user$ = this.auth.authState.pipe(
@@ -39,6 +41,9 @@ export class AuthService {
     return this.user$;
   }
 
+  get loggedInStatus(): Observable<any> {
+    return this.loggedIn.asObservable();
+  }
 
   // ------- LOGIN SERVICE ----------
 
@@ -48,6 +53,7 @@ export class AuthService {
         // console.log(user);
         this.loggedIn.next(true);
         this.router.navigate(['']);
+        this.toastr.success('Welcome back 😊');
       }
     );
   }
@@ -61,7 +67,12 @@ export class AuthService {
       this.usService.storeUser(a.user.uid, dataObj);
       this.loggedIn.next(true);
       this.router.navigate(['/profile']);
-    });
+      this.toastr.success('Welcome to Eki-Edo! 😎');
+    },
+    // (err) => {
+
+    // }
+    );
 
   }
 
@@ -71,7 +82,8 @@ export class AuthService {
     this.auth.signOut().then(
       () => {
         this.loggedIn.next(false);
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
+        this.toastr.info('Logged-out successfully');
 
     });
   }

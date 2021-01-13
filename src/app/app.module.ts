@@ -22,7 +22,7 @@ import { ProductComponent } from './home/categories/category/product-list/produc
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { FilterNavigationComponent } from './search-result/filter-navigation/filter-navigation.component';
 // import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { ProductImageGalleryComponent } from './product-detail/product-image-gallery/product-image-gallery.component';
+// import { ProductImageGalleryComponent } from './product-detail/product-image-gallery/product-image-gallery.component';
 import { ImageListComponent } from './product-detail/product-image-gallery/image-list/image-list.component';
 // import { CartComponent } from './cart/cart.component';
 // import { CartItemComponent } from './cart/cart-item/cart-item.component';
@@ -66,7 +66,7 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     // ResultFilterComponent,
     // FilterNavigationComponent,
     // ProductDetailComponent,
-    ProductImageGalleryComponent,
+    // ProductImageGalleryComponent,
     ImageListComponent,
     // CartComponent,
     // CartItemComponent,

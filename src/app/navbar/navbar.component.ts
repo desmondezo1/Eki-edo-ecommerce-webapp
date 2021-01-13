@@ -117,9 +117,12 @@ constructor(
   ngOnInit(): void {
 
      this.authService.isLoggedIn.subscribe(a =>{
-        this.isLoggedIn$ =  a;
         this.getCartCount(a);
       });
+
+      this.authService.loggedInStatus.subscribe( a => {
+        this.isLoggedIn$ =  a;
+      })
 
 
     // //  this.cartCount = this.cartService.getCartCount();

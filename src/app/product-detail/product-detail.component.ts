@@ -52,6 +52,7 @@ export class ProductDetailComponent implements OnInit {
 
     addToSavedItems(): void{
       this.cartService.addProductToSaved(this.product);
+      this.toastr.success('saved! 💗')
     }
 
     // getProductFromServer(id: number){
