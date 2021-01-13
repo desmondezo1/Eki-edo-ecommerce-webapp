@@ -13,5 +13,5 @@ export class AppComponent {
 {
 updates.available.subscribe( event => {
   updates.activateUpdate().then(() => document.location.reload());
-})
+  })
 }}

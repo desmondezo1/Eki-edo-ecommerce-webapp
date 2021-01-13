@@ -1,15 +1,18 @@
-:host{
+/* :host{ */
   /* display: grid; */
-  display: block;
+
+  /* display: block; */
+
   /* margin-top: 100px; */
-  min-height: 100vh;
+
+  /* min-height: 100vh;
   overflow: auto;
   position: relative;
-}
-
+} */
+/* 
 .wrapper{
   padding-bottom: 160px;
   padding-top: 100px ;
 }
-
+ */
 
