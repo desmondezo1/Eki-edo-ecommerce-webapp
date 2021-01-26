@@ -2,12 +2,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './../service/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from './../service/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { PaystackOptions } from 'angular4-paystack';
 import { UserService } from 'src/app/service/user.service';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +24,14 @@ export class CheckoutComponent implements OnInit {
   cartItems;
   userId;
   totalPrice: any;
+  lat;
+  lng;
+  zoom = 1;
+
+  private geoCoder;
+
+  @ViewChild('search')
+  public searchElementRef: any;
 
   options: PaystackOptions;
 
@@ -33,8 +42,9 @@ export class CheckoutComponent implements OnInit {
     private userService: UserService,
     private auth: AngularFireAuth,
     private router: Router,
-    private spinner: NgxSpinnerService
-
+    private spinner: NgxSpinnerService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
 
 
@@ -80,7 +90,8 @@ export class CheckoutComponent implements OnInit {
     edit.style.display = 'none';
     const closeIt = document.querySelector<HTMLElement>('.closeIt');
     closeIt.style.display = 'flex';
-
+    const mapSpan = document.querySelector<HTMLElement>('#map');
+    mapSpan.style.display = "flex";
   }
 
 
@@ -100,7 +111,8 @@ export class CheckoutComponent implements OnInit {
     edit.style.display = 'flex';
     const closeIt = document.querySelector<HTMLElement>('.closeIt');
     closeIt.style.display = 'none';
-
+    const mapSpan = document.querySelector<HTMLElement>('#map');
+    mapSpan.style.display = "none";
   }
 
   toggleClassOnHome(home, pickup): void{
@@ -186,9 +198,16 @@ export class CheckoutComponent implements OnInit {
       if (!this.isEmpty(a)){
         this.totalPrice = 0;
         a.forEach(r => {
-          console.log('new g', (r.price * r.qty));
-          this.totalPrice += ( +r.price * +r.qty);
-          console.log(Math.round(this.totalPrice));
+          if(r.discount_price){
+            console.log('new g', (r.price * r.qty));
+            this.totalPrice += ( +r.discount_price * +r.qty);
+            console.log(Math.round(this.totalPrice));
+          }else{
+            console.log('new g', (r.price * r.qty));
+            this.totalPrice += ( +r.price * +r.qty);
+            console.log(Math.round(this.totalPrice));
+          }
+
        });
       }
       this.options = {
@@ -203,6 +222,28 @@ export class CheckoutComponent implements OnInit {
     this.closeEditAddress();
 
 
+      //load Places Autocomplete
+      this.mapsAPILoader.load().then(() => {
+        this.geoCoder = new google.maps.Geocoder;
+
+        const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            //get the place result
+            const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+            //verify result
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+
+            //set latitude, longitude and zoom
+            this.lat = place.geometry.location.lat();
+    this.lng = place.geometry.location.lng();
+            this.zoom = 12;
+          });
+        });
+       });
 
 
     // this.cartService.getGrandTotal().subscribe(

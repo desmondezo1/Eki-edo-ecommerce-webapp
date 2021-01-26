@@ -16,11 +16,13 @@ export class FilterNavigationComponent implements OnInit {
     config.autoClose = false;
    }
 
-  
+
 
   openVerticallyCentered(content: any): void {
     this.modalService.open(content, { centered: true });
   }
+
+  
 
 
   ngOnInit(): void {

@@ -1,0 +1,17 @@
+<a [routerLink]="['/p/', product.id]">
+  <div class="product">
+    <div class="img">
+      <img src="{{product.image}}" alt="">
+    </div>
+  <div class="name">
+    <h2>{{product.title | slice: 0:15 }}...</h2>
+  </div>
+    <div class="price">
+      {{product.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+    </div>
+
+
+
+  </div>
+  </a>
+

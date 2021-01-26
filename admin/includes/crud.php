@@ -11,10 +11,10 @@ define('JWT_SECRET_KEY', 'replace_with_your_strong_jwt_secret_key'); /* chnage t
 
 class Database
 {
-    /* 
+    /*
      * Create variables for credentials to MySQL database
      * The variables have been declared as private. This
-     * means that they will only be available with the 
+     * means that they will only be available with the
      * Database class
      */
 
@@ -22,6 +22,11 @@ class Database
     private $db_user = "DB_USER";  // Change as required
     private $db_pass = "DB_PASSWORD";  // Change as required
     private $db_name = "DB_NAME";    // Change as required
+
+    // private $db_host = "localhost";  // Change as required
+    // private $db_user = "root";  // Change as required
+    // private $db_pass = "";  // Change as required
+    // private $db_name = "eki_edo_db";    // Change as required
 
     /*
      * Extra variables that are required by other function such as boolean con variable
@@ -45,7 +50,7 @@ class Database
                 return true; // Connection has been made return TRUE
             }
         } else {
-            return true; // Connection has already been made return TRUE 
+            return true; // Connection has already been made return TRUE
         }
     }
 

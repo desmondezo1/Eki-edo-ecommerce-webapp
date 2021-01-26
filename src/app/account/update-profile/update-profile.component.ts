@@ -1,9 +1,10 @@
 import { UserService } from './../../service/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, NgZone, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { tap } from 'rxjs/operators';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-update-profile',
@@ -18,15 +19,26 @@ export class UpdateProfileComponent implements OnInit {
   phoneNumber: string;
   userData: any;
   profileForm: FormGroup;
+  lat;
+  lng;
+  zoom = 1;
+  private geoCoder;
+
+  @ViewChild('search')
+  public searchElementRef: any;
 
   constructor(
     private builder: FormBuilder,
     private auth: AngularFireAuth,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
     ) { }
 
-
+    selected(event: any){
+      console.log(event)
+    }
 
 
   ngOnInit(): void {
@@ -67,6 +79,31 @@ export class UpdateProfileComponent implements OnInit {
       this.profileForm.patchValue(user);
       console.log(user);
     });
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+     });
+
+
 
   }
 

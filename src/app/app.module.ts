@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +40,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NgAisModule } from 'angular-instantsearch';
+// import { NgAisModule } from 'angular-instantsearch';
 // import { CheckoutComponent } from './checkout/checkout.component';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { UsermanagementComponent } from './auth/usermanagement/usermanagement.component';
@@ -48,6 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ConnectionServiceModule } from 'ng-connection-service';
+// import { ContactUsComponent } from './contact-us/contact-us.component';
+// import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +82,9 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     // SavedItemsComponent,
     // ChangePasswordComponent,
     // CheckoutComponent,
-    UsermanagementComponent
+    UsermanagementComponent,
+    // ContactUsComponent,
+    // AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,7 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    NgAisModule.forRoot(),
+    // NgAisModule.forRoot(),
     Angular4PaystackModule.forRoot('pk_test_a20bdc9893a0202859761408baae4e082254f9fc'),
     NgxSpinnerModule,
     BrowserAnimationsModule,// required animations module
@@ -100,6 +105,10 @@ import { ConnectionServiceModule } from 'ng-connection-service';
       progressBar: true,
       timeOut: 1000
     }), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCVJvhmqDILKt3MsbrYlydH5LjQz4CSNbs',
+      libraries: ["places"],
+    })
     // AngularFirestoreModule.enablePersistence()
   ],
   providers: [CurrencyPipe, NgbActiveModal, NgbModal],

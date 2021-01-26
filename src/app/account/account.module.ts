@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -24,7 +25,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCVJvhmqDILKt3MsbrYlydH5LjQz4CSNbs',
+      libraries: ["places"],
+    })
   ],
   providers:[
     NgbActiveModal,

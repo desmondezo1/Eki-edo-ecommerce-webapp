@@ -67,12 +67,23 @@ export class CartItemComponent implements OnInit {
   }
 
   calculateSubtotal(value?): void{
-    if (value){
-      this.subtotal = this.cartItem.price * value;
-    } else {
-      this.subtotal = this.cartItem.price * this.cartItem.qty;
-    }
+    if(this.cartItem.discount_price){
 
+      if (value){
+        this.subtotal = this.cartItem.discount_price * value;
+      } else {
+        this.subtotal = this.cartItem.discount_price * this.cartItem.qty;
+      }
+
+    }else{
+
+      if (value){
+        this.subtotal = this.cartItem.price * value;
+      } else {
+        this.subtotal = this.cartItem.price * this.cartItem.qty;
+      }
+
+    }
   }
 
   ngOnInit(): void {

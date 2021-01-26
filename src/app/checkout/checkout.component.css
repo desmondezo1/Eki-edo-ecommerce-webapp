@@ -1,3 +1,13 @@
+
+#map{
+  display: none;
+  width: 100%;
+}
+
+agm-map{
+  height: 200px;
+}
+
 .wrapper{
   display: flex;
   justify-content: center;
@@ -41,6 +51,7 @@
 .wrapper-div .delivery-info .title a{
   color: #CC353E;
   font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
 }
 

@@ -21,7 +21,14 @@
             <input type="text"  id="" formControlName="fullName" name="firstname" class="form-control">
           </div>
           <div class="address">
-            <textarea name="address" id="" formControlName="address"  class="form-control" ></textarea>
+            
+              <agm-map [latitude]="lat" [longitude]="lng" id="map">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+            
+
+
+            <textarea name="address" id="" formControlName="address"  #search class="form-control" ></textarea>
           </div>
 
           <div class="phone">

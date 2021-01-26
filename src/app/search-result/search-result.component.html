@@ -43,22 +43,22 @@
    </div>
 </div> -->
 
-
+<!--
 <div class="wrapper">
 
   <ais-instantsearch [config]="config">
   <ais-search-box [searchAsYouType]="false" submitTitle="search"></ais-search-box>
-  <ais-stats></ais-stats>
+  <ais-stats></ais-stats> -->
 
   <!-- <h3>Filter by price range:</h3> -->
   <!-- <ais-range-slider attribute="price"></ais-range-slider> -->
   <!-- <ais-refinement-list attribute="salePrice_range"></ais-refinement-list> -->
   <!-- <ais-clear-refinements [autoHideContainer]="true" buttonLabel="Clear filter"></ais-clear-refinements> -->
 
-  <ais-hits>
+  <!-- <ais-hits>
     <ng-template let-hits="hits" let-results="results">
-      <!-- Nothing found? -->
-      <div *ngIf="hits.length === 0">
+       Nothing found?
+       <div *ngIf="hits.length === 0">
         😢 Nothing found for
         <strong>{{results.query}}</strong>.
       </div>
@@ -103,37 +103,59 @@
 </ais-instantsearch>
 
 </div>
-
+ -->
 
 
 
 
 <!-- after algolia -->
-<!-- <section class="search-result-section">
+<section class="search-result-section">
+<!--
   <div class="pos-wrapper">
-
-
     <div class="filter">
-      <app-result-filter></app-result-filter>
+    <H4>Categories</H4>
+    <div class="category-list">
+      <a href="">Cat 1</a>
+      <a href="">Cat 2</a>
+      <a href="">Cat 3</a>
+      <a href="">Cat 4</a>
     </div>
-  </div>
+
+      <div class="price-filter">
+          <form action="">
+            <span>
+              <label for="min_range">Min price</label>
+               <input type="number" name="min" id="min_range">
+            </span>
+            <span>
+              <label for="min_range">Max price</label>
+               <input type="number" name="max" id="max_range">
+            </span>
+            <div>
+              <button type="submit">Filter</button>
+            </div>
+          </form>
+
+      </div>-->
+      <!-- FILTER WILL GO HERE  -->
+   <!-- </div>
+  </div> -->
+
+
+
 
     <div class="product-list">
-      <div class="sort"> -->
-        <!-- <select class="form-control form-control-sm">
-          <option>Small select</option>
-        </select> -->
-          <!-- <div ngbDropdown class="d-inline-block">
-            <button class="button-sort" id="dropdownBasic1" ngbDropdownToggle>Sort By</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdownlist">
-              <button ngbDropdownItem>Low > High price</button>
-              <button ngbDropdownItem>High > Low price</button>
-            </div>
-          </div>
-      </div>
-      <app-product-list></app-product-list>
+      <!-- <div class="sort">
+        <select class="form-control form-control-sm">
+          <optgroup label="sort by">Small select</optgroup>
+          <option>Low > High price</option>
+          <option>High > Low price</option>
+        </select>
+      </div> -->
+      <!-- <app-product-list></app-product-list> -->
+      <app-product-results></app-product-results>
     </div>
 </section>
 
-<app-filter-navigation (scroll)="onScrollEvent($event)" #filterNav></app-filter-navigation> -->
+<!-- <app-filter-navigation (scroll)="onScrollEvent($event)" #filterNav></app-filter-navigation> -->
 

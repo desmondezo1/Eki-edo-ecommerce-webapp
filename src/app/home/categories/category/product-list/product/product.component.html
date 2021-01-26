@@ -6,9 +6,25 @@
 <div class="name">
   <h2>{{product.title | slice: 0:15 }}...</h2>
 </div>
+
   <div class="price">
-    {{product.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+    <!-- if there is a discount price set -->
+    <span *ngIf="product?.discount_price else oldprice">
+      {{product?.discount_price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+    </span>
+    <!-- if there is no discount price set  -->
+    <ng-template #oldprice>
+       {{product.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+    </ng-template>
   </div>
+
+  <span *ngIf="product?.discount_price" class="discount">
+    {{product?.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+  </span>
+
+  <span class="percent-discount" *ngIf="product?.discount_price">
+  -{{100 - (product?.discount_price / product.price * 100)  | number : '1.0-0'}}%
+  </span>
 
 
 

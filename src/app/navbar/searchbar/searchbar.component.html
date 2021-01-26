@@ -1,6 +1,11 @@
 
-  <form *ngIf="!router.url.includes('search')" action="" (click)="gotosearch()">
+  <!-- <form *ngIf="!router.url.includes('search')" action="" (click)="gotosearch()">
     <input disabled type="search"   name="" id="searchbox" placeholder="Search...">
+    <button>Search</button>
+  </form> -->
+
+  <form action="" method="GET">
+    <input type="search"   name="" id="searchbox" placeholder="Search...">
     <button>Search</button>
   </form>
 

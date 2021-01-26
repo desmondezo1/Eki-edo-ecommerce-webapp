@@ -55,9 +55,12 @@
     </div>
   </div>
 
+      <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="selected($event)">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
 
   <div class="form-group">
-    <textarea name="address" id="" class="form-control"
+    <textarea name="address" id="" #search class="form-control"
     [ngClass]="{'is-invalid': profileForm.get('address').touched && profileForm.get('address').invalid}"
     formControlName="address" placeholder="Address"></textarea>
     <span class="invalid-feedback">Sorry,this field can't be empty</span>

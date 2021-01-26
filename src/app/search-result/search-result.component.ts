@@ -3,7 +3,7 @@
 // import * as algoliasearch from 'algoliasearch/lite';
 // import { environment } from './../../../environments/environment';
 import { AfterViewInit, Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import algoliasearch from 'algoliasearch/lite';
+// import algoliasearch from 'algoliasearch/lite';
 // import instantsearch from 'instantsearch.js';
 // import { searchBox, hits } from 'instantsearch.js/es/widgets';
 
@@ -23,18 +23,24 @@ import algoliasearch from 'algoliasearch/lite';
 export class SearchResultComponent implements OnInit, AfterViewInit {
 
 
-   search: any;
+  //  search: any;
 
 
-  config: any = {
-    indexName: 'test_products',
-    searchClient: algoliasearch('NOK6B27L1T', '22c6e6783cb484e3c482b673f78e725d'),
+  // config: any = {
+  //   indexName: 'test_products',
+  //   searchClient: algoliasearch('NOK6B27L1T', '22c6e6783cb484e3c482b673f78e725d'),
 
-  };
+  // };
 
   // filterDiv: HTMLElement;
 
-  constructor() { }
+
+
+
+
+  constructor() {
+
+   }
 
 
   // getDiffBetweenTopAndBottom(ElTop: any, Elbottom: any): number{
@@ -66,6 +72,10 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
   //       }
 
 
+
+
+
+
    ngAfterViewInit(): void {
 
    }
@@ -74,6 +84,9 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
+
   }
 
 }
+
+

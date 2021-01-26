@@ -19,6 +19,7 @@ a{
   height: auto;
   /* height: 100%;
   max-height: 320px; */
+  position: relative;
   align-items: center;
 }
 
@@ -81,6 +82,25 @@ a{
   text-align: center;
   color: #669c73;
 }
+
+.discount{
+  color: grey;
+  font-size: 0.7rem;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.percent-discount{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background:#F2C788;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: 500;
+  color:#B66E02;
+}
+
 
 /* tablet device */
 @media screen and (min-width: 768px) and (max-width: 1024px){

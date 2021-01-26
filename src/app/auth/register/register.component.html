@@ -54,10 +54,17 @@
       </div>
 
       <div class="address-div  input-div">
-        <textarea placeholder="Address" class="form-control"
+        <div>
+          <agm-map [latitude]="lat" [longitude]="lng" >
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+
+        </div>
+
+        <textarea placeholder="Type in an Address, and select" class="form-control"
         [ngClass]="{'is-invalid': registerForm.get('address').touched && registerForm.get('address').invalid}"
         formControlName="address"
-         name="address" id="address" rows="3" required></textarea>
+         name="address" id="address" #search rows="3" required></textarea>
         <span class="invalid-feedback">
           Required field
         </span>

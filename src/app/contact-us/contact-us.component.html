@@ -1,0 +1,43 @@
+<div class="wrapper">
+
+  <div class="row">
+
+    <div class="card mb-3" style="width: 18rem;">
+      <img src="../../assets/img/pexels-neosiam-594452.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"> Enquiries or Compliant ?</h5>
+        <p class="card-text"> </p>
+        <ul class="list-group list-group-flush contact-list">
+          <li class="list-group-item"> +2348077777291</li>
+          <li class="list-group-item">ekiedonaija20@gmail.com </li>
+        </ul>
+        <a href="tel:+2348077777291" class="btn btn-success">Speak With Someone</a>
+      </div>
+    </div>
+
+    <div class="card mb-3" style="width: 18rem;">
+      <img src="../../assets/img/pexels-nick-demou-986728.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"> Our Office Locations</h5>
+        <p class="card-text"> </p>
+        <ul class="list-group list-group-flush contact-list">
+          <li class="list-group-item">xxxxxx</li>
+          <li class="list-group-item">xxxxxxx </li>
+        </ul>
+        <!-- <a href="tel:+2348077777291" class="btn btn-success">Speak With Someone</a> -->
+      </div>
+    </div>
+
+
+  </div> <!-- end of row -->
+
+ <div class=" row-map"  id="office">
+   <h1>Our Office locations on the Map</h1>
+ <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+ </div>
+
+
+
+</div>

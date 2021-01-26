@@ -42,14 +42,22 @@
 
   <div class="unit-price">
     <div class="current-price">
-      {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+
+      <span *ngIf="cartItem?.discount_price else oldprice" >
+        {{cartItem?.discount_price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+      </span>
+      
+      <ng-template #oldprice>
+          {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+      </ng-template>
+
     </div>
-    <div class="discount">
+    <div class="discount" *ngIf="cartItem?.discount_price">
       <div class="old-price">
-        N5000
+       {{cartItem?.discount_price}}
       </div>
       <div class="save-price">
-        Savings: N3000
+        Savings:{{(cartItem?.price - cartItem?.discount_price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </div>
     </div>
   </div>

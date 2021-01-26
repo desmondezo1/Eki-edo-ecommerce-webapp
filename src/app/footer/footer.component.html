@@ -9,10 +9,10 @@
   </a>
   <div class="bottom-footer">
     <div class="footer-links">
-      <a class="1 navlink" href="">About</a>
+      <a class="1 navlink" [routerLink]="['/about']">About</a>
       <a class="2 navlink" href="">Terms Of Use</a>
-      <a class="3 navlink" href="">Office</a>
-      <a class="4 navlink" href="">Contact Us</a>
+      <a class="3 navlink" [routerLink]="['/contact-us']" fragment="office">Office</a>
+      <a class="4 navlink" [routerLink]="['/contact-us']" >Contact Us</a>
     </div>
   </div>
 

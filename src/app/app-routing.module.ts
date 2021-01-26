@@ -1,3 +1,4 @@
+import { AboutModule } from './about/about.module';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SavedItemsComponent } from './account/saved-items/saved-items.component';
 import { OrdersComponent } from './account/orders/orders.component';
@@ -23,6 +24,7 @@ const redirectLoggedInToProfile = () => redirectLoggedInTo(['/profile']);
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
+  {path: 'about', loadChildren: () => import('src/app/about/about.module').then(m => m.AboutModule)},
   // {path: '', loadChildren: () => import('src/app/home/home.module').then(m => m.HomeModule) },
   {path: 'p/:id', loadChildren: () => import('src/app/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
   // {path: 'checkout', component: CheckoutComponent,
@@ -47,6 +49,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToProfile }},
   // {path: 'cart', component: CartComponent},
   {path: 'cart', loadChildren: () => import('src/app/cart/cart.module').then(m => m.CartModule) },
+  {path: 'contact-us', loadChildren: () => import('src/app/contact-us/contact-us.module').then(m => m.ContactUsModule) },
   // {path: 'search', component: SearchResultComponent},
   {path: 'search', loadChildren: () => import('src/app/search-result/search-result.module').then(m => m.SearchResultModule)},
   // {path: 'p/:id', component: ProductDetailComponent  },

@@ -41,6 +41,10 @@ form{
   margin-bottom: 25px;
 }
 
+agm-map {
+  height: 300px;
+}
+
 .extras{
   display: flex;
   margin: 15px;

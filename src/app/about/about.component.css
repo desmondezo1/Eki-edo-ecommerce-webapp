@@ -1,0 +1,107 @@
+.wrapper{
+  padding: 2% 2%;
+}
+
+.about-title, h2{
+  font-size: 1.5rem;
+  color: #676767;
+}
+
+.about-content{
+  padding: 20px;
+}
+
+h2.title{
+  margin-left: 40px;
+}
+
+.head-img{
+  background: url('../../assets/img/farmer.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  position: relative;
+}
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #15181b6e;
+  border-radius: 10px;
+  top: 0;
+}
+.quote{
+  display: flex;
+  margin: 40px 0;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.quote .img{
+  background: url('../../assets/img/farmer2.jpg') no-repeat;
+  /* background-size: contain; */
+  background-size: auto 100%;
+  /* height: 100%; */
+  /* background-position: center; */
+  width: 50%;
+  background-attachment: fixed;
+  border-radius: 10px 0 0 10px;
+}
+
+.quote .j-quote{
+  margin: 0;
+  background: #fff;
+  border-radius: 10px;
+}
+
+
+.quote .img, .quote .j-quote{
+  flex-grow: 1;
+  /* margin: 5px; */
+}
+
+.about, .mission{
+  /* background: #fff; */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.row{
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card{
+  min-height: 200px;
+  margin: 10px;
+}
+
+.card-title img{
+  height: 50px;
+}
+
+
+/* tablet device */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+ .quote .img{
+   display: none;
+ }
+}
+
+  /* large phone  */
+@media screen and (max-width:767px){
+  .quote .img{
+    display: none;
+  }
+
+  .container > h1{
+    font-size: 2rem;
+  }
+
+
+  .container > p{
+    font-size: 1rem;
+  }
+}
