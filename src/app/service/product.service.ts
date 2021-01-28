@@ -1,4 +1,4 @@
-import { productUrl } from './../config/api';
+import { wooProductUrl } from './../config/api';
 import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {Product} from 'src/app/models/product';
@@ -25,7 +25,7 @@ export class ProductService {
 
   getProducts(): Observable<Product[]>{
     // return this.products;
-    return this.http.get<Product[]>(productUrl);
+    return this.http.get<Product[]>(wooProductUrl);
   }
 
 
@@ -36,7 +36,7 @@ export class ProductService {
       this.router.navigate(['404']);
       return false;
     }
-    return this.http.get<Product[]>(productUrl + '/' + id)
+    return this.http.get<Product[]>(wooProductUrl + '/' + id)
     .pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.handleError) // then handle the error

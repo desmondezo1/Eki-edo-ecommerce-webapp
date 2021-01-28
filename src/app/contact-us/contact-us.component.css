@@ -1,3 +1,16 @@
+:host{
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3,h4,h5{
+  color: #5f5f5f;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h5{
+  font-weight: 600;
+}
+
 .row{
   justify-content: center;
   width: 100%;
@@ -6,15 +19,31 @@
 }
 
 .card{
+  /* box-shadow: 0 0 17px 3px #dde7de; */
+  box-shadow: 0 9px 20px -17px #9d9ea0;
   margin: 1rem;
+}
 
+.speak-with{
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: #006436;;
+  box-shadow: 0 0 25px -8px grey;
+  color: #f8f9fa;
+  border: none;
 }
 
 img{
   max-height: 192px;
 }
+
 .contact-list{
   margin: 20px 0;
+}
+
+li{
+  color: #3a3c3e;
+
 }
 
 .row-map{
