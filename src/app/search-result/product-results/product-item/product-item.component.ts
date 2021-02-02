@@ -8,7 +8,7 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductItemComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() product: any;
 
   constructor() { }
 

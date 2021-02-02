@@ -1,7 +1,7 @@
 <a [routerLink]="['/p/', product.id]">
   <div class="product">
     <div class="img">
-      <img src="{{product.images[0].src}}" alt="">
+      <img src="{{product?.images[0].src}}" alt="">
     </div>
   <div class="name">
     <h2>{{product.title | slice: 0:15 }}...</h2>
