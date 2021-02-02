@@ -1,8 +1,11 @@
+import { ProductService } from 'src/app/service/product.service';
+import { ActivatedRoute } from '@angular/router';
 // import { widgets } from 'instantsearch.js/es/connectors';
 
 // import * as algoliasearch from 'algoliasearch/lite';
 // import { environment } from './../../../environments/environment';
 import { AfterViewInit, Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 // import algoliasearch from 'algoliasearch/lite';
 // import instantsearch from 'instantsearch.js';
 // import { searchBox, hits } from 'instantsearch.js/es/widgets';
@@ -22,57 +25,35 @@ import { AfterViewInit, Component, HostListener, Input, OnInit, ViewEncapsulatio
 
 export class SearchResultComponent implements OnInit, AfterViewInit {
 
+  products: any[];
 
-  //  search: any;
-
-
-  // config: any = {
-  //   indexName: 'test_products',
-  //   searchClient: algoliasearch('NOK6B27L1T', '22c6e6783cb484e3c482b673f78e725d'),
-
-  // };
-
-  // filterDiv: HTMLElement;
-
-
-
-
-
-  constructor() {
+  constructor(
+    private route:ActivatedRoute,
+    private prdService: ProductService,
+    private spinner: NgxSpinnerService
+  ) {
 
    }
 
 
-  // getDiffBetweenTopAndBottom(ElTop: any, Elbottom: any): number{
-  //     const result = ElTop.getBoundingClientRect().top - Elbottom.getBoundingClientRect().bottom;
-  //     return result;
-  // }
+
+  searchProducts(q: any): any{
 
 
+    return this.prdService.searchForProduct(q).subscribe(
+      (res) => {
+         this.products = res;
+        //  console.log(res);
 
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+      }, 500);
+        //  this.spinner.hide();
+      }
+    );
 
-  //  @HostListener('window:scroll', ['$event']) onScrollEvent($event: any): void{
-
-
-  //           const filterNav: any = document.querySelector('app-filter-navigation');
-  //           const footer = document.querySelector('app-footer');
-  //           const res = this.getDiffBetweenTopAndBottom(footer, filterNav);
-
-  //           console.log(res);
-
-
-  //           if ( res <= 0 ){
-  //             filterNav.style.transform = "translateX(-100%)";
-  //           }
-
-  //           if (res > 0){
-  //             filterNav.style.transform = "translateX(0)";
-  //           }
-
-  //       }
-
-
-
+  }
 
 
 
@@ -83,7 +64,9 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    this.spinner.show();
 
+    this.searchProducts(this.route.snapshot.params['q']);
 
   }
 

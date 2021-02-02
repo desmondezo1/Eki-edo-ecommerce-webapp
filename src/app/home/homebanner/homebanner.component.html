@@ -3,10 +3,7 @@
   <div class="categories-list">
     <h1>Categories</h1>
       <ul>
-        <li>FoodStuff</li>
-        <li>Drinks & Beverages</li>
-        <li></li>
-        <li></li>
+        <li *ngFor="let category of categories"> <a href="">{{category.name}}</a> </li>
       </ul>
   </div>
   <div class="carousel">

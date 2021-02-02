@@ -1,29 +1,24 @@
 <a [routerLink]="['/p/', product.id]">
 <div class="product">
   <div class="img">
-    <img src="{{product.image}}" alt="">
+    <img src="{{product.images[0]?.src}}" alt="">
   </div>
 <div class="name">
-  <h2>{{product.title | slice: 0:15 }}...</h2>
+  <h2>{{product.name | slice: 0:15 }}...</h2>
 </div>
 
   <div class="price">
-    <!-- if there is a discount price set -->
-    <span *ngIf="product?.discount_price else oldprice">
-      {{product?.discount_price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
-    </span>
-    <!-- if there is no discount price set  -->
-    <ng-template #oldprice>
-       {{product.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
-    </ng-template>
+
+    {{product.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+
   </div>
 
-  <span *ngIf="product?.discount_price" class="discount">
-    {{product?.price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
+  <span *ngIf="product?.sale_price" class="discount">
+    {{product?.regular_price | currency:'NGN': 'symbol-narrow': '2.0-0'}}
   </span>
 
-  <span class="percent-discount" *ngIf="product?.discount_price">
-  -{{100 - (product?.discount_price / product.price * 100)  | number : '1.0-0'}}%
+  <span class="percent-discount" *ngIf="product?.sale_price">
+  -{{100 - (product?.sale_price / product.regular_price * 100)  | number : '1.0-0'}}%
   </span>
 
 

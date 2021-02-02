@@ -5,7 +5,7 @@ import { ProductService } from './../service/product.service';
 import { MessengerService } from './../service/messenger.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
@@ -28,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
     private toastr: ToastrService,
     private cartService: CartService,
     private savedService: SavedService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
     ) {
       this.spinner.show();
     }
@@ -64,6 +65,11 @@ export class ProductDetailComponent implements OnInit {
 
       return this.PrdService.getProductFromServer(id).subscribe(
         (res) => {
+          if(res?.length === 0){
+            this.router.navigate(['']);
+          }
+          console.log({res});
+
            this.product = res;
 
         setTimeout(() => {
@@ -71,6 +77,10 @@ export class ProductDetailComponent implements OnInit {
           this.spinner.hide();
         }, 500);
           //  this.spinner.hide();
+        },
+        ()=>{
+          // console.log(r);
+          this.router.navigate(['']);
         }
       );
       // https://fakestoreapi.com/products/1

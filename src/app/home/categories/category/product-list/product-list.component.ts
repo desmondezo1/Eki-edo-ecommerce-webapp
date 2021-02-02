@@ -48,6 +48,7 @@ export class ProductListComponent implements OnInit {
 
     this.productService.getProducts().subscribe((res) => {
         this.productList = res;
+        console.log(res);
         this.spinner.hide();
     });
   }

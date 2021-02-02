@@ -69,8 +69,13 @@ agm-map{
   margin-bottom: 10px;
 }
 
+
 .wrapper-div .delivery-info .update-address-form{
   padding: 10px;
+}
+
+.name, .address, .phone{
+  margin-bottom: 10px;
 }
 
 .wrapper-div .delivery-info .update-address-form .submit-edit{
@@ -144,6 +149,9 @@ agm-map{
 
 
 
+.wrapper-div .shippingzone{
+  margin-bottom: 40px;
+}
 
 .wrapper-div .payment-method{
   grid-area: pay-meth;
@@ -209,6 +217,8 @@ background: #FFFFFF;
     font-weight: 700;
     display: none;
     padding-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
     /* display: flex; */
     color: #539647;
     justify-content: center;

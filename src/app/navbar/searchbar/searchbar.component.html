@@ -4,9 +4,10 @@
     <button>Search</button>
   </form> -->
 
-  <form action="" method="GET">
-    <input type="search"   name="" id="searchbox" placeholder="Search...">
-    <button>Search</button>
+  <form action="" [formGroup]="searchForm"
+  (ngSubmit)="search()" method="GET">
+    <input type="search" formControlName="search"  name="search" id="searchbox" placeholder="Search...">
+    <button type="submit">Search</button>
   </form>
 
 

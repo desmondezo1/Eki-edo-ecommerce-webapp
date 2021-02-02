@@ -5,25 +5,26 @@
   ></ngx-spinner>
   <div class="img-addcart">
       <div class="img-gal">
-        <app-product-image-gallery [img]="product?.image"></app-product-image-gallery>
+        <app-product-image-gallery [img]="product?.images[0].src"></app-product-image-gallery>
       </div>
 
       <div class="prod-cta">
 
           <div class="details">
             <div class="product-name">
-              <H1>{{product?.title}}</H1>
+              <H1>{{product?.name}}</H1>
             </div>
 
             <div class="product-price">
-              <h3 class="price" *ngIf="product?.discount_price else oldprice">{{product?.discount_price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
+              <h3 class="price">{{product?.price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
+              <!-- <h3 class="price" *ngIf="product?.discount_price else oldprice">{{product?.discount_price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
               <ng-template #oldprice>
                 <h3 class="price">{{product?.price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h3>
-              </ng-template>
+              </ng-template> -->
 
-              <div *ngIf="product?.discount_price" class="discount">
-                <h4 class="old-price">{{product?.price}}</h4>
-                <span class="perc-off">-{{100 - ( product?.discount_price / product?.price * 100)| number : '1.0-0'}}%</span>
+              <div *ngIf="product?.sale_price" class="discount">
+                <h4 class="old-price">{{product?.regular_price | currency: 'NGN': 'symbol-narrow': '2.0-0'}}</h4>
+                <span class="perc-off">-{{100 - ( product?.sale_price / product?.regular_price * 100)| number : '1.0-0'}}%</span>
               </div>
 
             </div>
@@ -73,8 +74,8 @@
 
   <div class="product-details">
       <h2>Prod details</h2>
-      <p>
-        {{product?.description}}
+      <p [innerHTML]="product?.description">
+        <!-- {{product?.description}} -->
       </p>
   </div>
 

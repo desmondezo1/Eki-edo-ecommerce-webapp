@@ -1,5 +1,7 @@
+import { ProductService } from './../../service/product.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-homebanner',
@@ -8,10 +10,15 @@ import { NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomebannerComponent implements OnInit {
 
+  categories: any[];
 
-  constructor() { }
+  constructor(private prodservice: ProductService) { }
 
   ngOnInit(): void {
+    this.prodservice.getCategories().subscribe( a => {
+      this.categories = a;
+      console.log(a);
+    })
 
   }
 

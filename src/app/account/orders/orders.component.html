@@ -12,13 +12,13 @@
 
     <div class="item-wrap">
       <div class="img">
-        <img src="https://media.allure.com/photos/5c1933c41f198f2c6627f8c8/1:1/w_400%2Cc_limit/tatcha-violet-c-serum.jpg"
+        <img src="{{item.images[0].src}}"
          alt="">
       </div>
       <div class="item-details">
         <div class="item-name">
           <h1>
-            {{item.title}}
+            {{item.name}}
           </h1>
         </div>
         <span class="date">
@@ -34,17 +34,17 @@
       </div>
       <div class="discount">
         <div class="old-price">
-          N5000
+          {{item.regular_price | currency:"NGN":"symbol-narrow": '2.0-0'}}
         </div>
-        <div class="save-price">
-          Savings: N3000
+        <div class="save-price" *ngIf="item.sale_price">
+          Savings:  {{(item.regular_price - item.sale_price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
         </div>
       </div>
     </div>
 
     <div class="sub-total">
       <span class="sub-price">
-        {{(item.amountPaid) | currency:"NGN":"symbol-narrow": '2.0-0'}}
+        {{(item?.amountPaid) | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </span>
     </div>
 

@@ -51,7 +51,7 @@ const routes: Routes = [
   {path: 'cart', loadChildren: () => import('src/app/cart/cart.module').then(m => m.CartModule) },
   {path: 'contact-us', loadChildren: () => import('src/app/contact-us/contact-us.module').then(m => m.ContactUsModule) },
   // {path: 'search', component: SearchResultComponent},
-  {path: 'search', loadChildren: () => import('src/app/search-result/search-result.module').then(m => m.SearchResultModule)},
+  {path: 'search/:q', loadChildren: () => import('src/app/search-result/search-result.module').then(m => m.SearchResultModule)},
   // {path: 'p/:id', component: ProductDetailComponent  },
   {path: '**', component: PageNotFoundComponent },
   {path: '404', component: PageNotFoundComponent },

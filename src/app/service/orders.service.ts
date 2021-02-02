@@ -1,8 +1,12 @@
+import { credentials } from './../config/api';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { orderApi } from '../config/api';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +19,8 @@ export class OrdersService {
   constructor(
     private auth: AngularFireAuth,
     private afs: AngularFirestore,
+    private http: HttpClient,
+
   ) {
     this.setUserOrders();
    }
@@ -46,7 +52,10 @@ export class OrdersService {
         );
       }
 
-
+      createOrderOnWoocommerce(data){
+        let httpheaders = new HttpHeaders({'content-type': 'application/json'});
+        return this.http.post<any[]>(orderApi + '?' + credentials, data, {headers: httpheaders});
+      }
 
       getUserOrders(){
         return this.userOrders;

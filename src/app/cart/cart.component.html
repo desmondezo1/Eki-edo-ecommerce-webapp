@@ -3,7 +3,7 @@
   <div class="wrapper-div">
       <div class="cart-items">
         <div class="cart-item-count">
-          <h1>Cart ({{cartCount}} Items)</h1>
+          <h1>Cart ({{cartCount}} Item <span *ngIf="cartCount > 1">s</span>)</h1>
         </div>
 
         <div class="cart-item-label">

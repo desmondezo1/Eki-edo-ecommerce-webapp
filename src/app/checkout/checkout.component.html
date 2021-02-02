@@ -3,7 +3,7 @@
   color="#539467"
   bdColor="rgb(235 255 242)"
   ></ngx-spinner>
-
+  <form action=""  [formGroup]="addressForm" (ngSubmit)="onFormSubmit()" >
   <div class="wrapper-div">
 
 
@@ -16,16 +16,16 @@
 
 
       <div class="update-address-form">
-        <form action=""  [formGroup]="addressForm" (ngSubmit)="onFormSubmit()" >
+
           <div class="name">
             <input type="text"  id="" formControlName="fullName" name="firstname" class="form-control">
           </div>
           <div class="address">
-            
+
               <agm-map [latitude]="lat" [longitude]="lng" id="map">
               <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
             </agm-map>
-            
+
 
 
             <textarea name="address" id="" formControlName="address"  #search class="form-control" ></textarea>
@@ -36,22 +36,51 @@
           </div>
 
 
-          <div class="radio-btn" style="display: none;">
+          <!-- <div class="radio-btn" style="display: none;">
             <input class="form-check-input" type="radio" name="delivery_method" formControlName="delivery_method" id="Radio2" value="home_delivery">
             <input class="form-check-input" type="radio" name="delivery_method" formControlName="delivery_method" id="Radio1" value="pickup_outlet">
-          </div>
+          </div> -->
+
 
           <div class="submit-edit" #editbtn>
             <button type="submit">Update Address</button>
           </div>
 
-        </form>
+        <!-- </form> -->
       </div>
     </div>
 
 
     <div class="delivery-method" #w>
-      <h3>Delivery Method</h3>
+      <h3>Choose an available shipping zone</h3>
+      <div class="input-group shippingzone">
+
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Shipping Zones</label>
+        </div>
+        <select (change)="selectedZone($event)" formControlName="delivery_zone" class="custom-select" id="inputGroupSelect01" required>
+          <option selected>Select a zone...</option>
+          <option *ngFor="let zone of shippingZones" value="{{zone.id}}">{{zone.name}}</option>
+        </select>
+      </div>
+
+      <span  *ngIf="shippingMethods">
+        <h3>Choose Delivery Method</h3>
+        <div class="input-group shippingzone">
+
+          <div class="input-group-prepend">
+
+            <label class="input-group-text" for="inputGroupSelect01">Methods</label>
+          </div>
+          <select (change)="selectedMethod($event)" formControlName="delivery_method" class="custom-select" id="inputGroupSelect01" required>
+            <option selected>Select a Method...</option>
+              <option *ngFor="let method of shippingMethods" value="{{method.id}}">{{method.title}}</option>
+          </select>
+        </div>
+      </span>
+
+
+      <!-- <h3>Choose a Delivery Method</h3>
       <div class="delivery-methods">
         <label style="flex-grow: 1;" for="Radio1" class="label">
           <span class="pickup" #pickup (click)="toggleClassOnPickup(pickup, home);"
@@ -62,7 +91,8 @@
           <span class="home" #home (click)="toggleClassOnHome(home, pickup)" >Home Delivery</span>
         </label>
 
-      </div>
+      </div> -->
+
 
     </div>
 
@@ -90,21 +120,33 @@
 
       >PROCEED TO PAYMENT {{totalPrice}}</button> -->
       <div class="totaltopay">
-        <span style="color:#cccccc; font-weight: 500;" class="total-label">Total: </span>
-        <span> {{totalPrice | currency:"NGN":"symbol-narrow": '2.0-0'}}</span>
+        <span>
+          <span style="color:#cccccc; font-weight: 500;" class="total-label">Shipping: </span>
+          <span> {{shippingFee | currency:"NGN":"symbol-narrow": '2.0-0'}}</span>
+        </span>
+        <span>
+          <span style="color:#cccccc; font-weight: 500;" class="total-label">Total: </span>
+          <span> {{totalPrice + shippingFee | currency:"NGN":"symbol-narrow": '2.0-0'}}</span>
+        </span>
+
       </div>
 
-      <button
-      angular4-paystack
-      [paystackOptions]="options"
-      (paymentInit)="paymentInit()"
-      (close)="paymentCancel()"
-      (callback)="paymentDone($event)"
-    >
-    PROCEED TO PAYMENT
-    </button>
+
+        <button *ngIf="shippingFee >= 0"
+        [ngClass]="addressForm.valid ? '' : 'disabled'"
+        angular4-paystack
+        [paystackOptions]="options"
+        (paymentInit)="paymentInit()"
+        (close)="paymentCancel()"
+        (callback)="paymentDone($event)"
+      >
+      PROCEED TO PAYMENT
+      </button>
+
 
   </div>
+
+
 
     <div class="cart-prev">
       <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
@@ -116,11 +158,11 @@
 
               <div class="cart-item" *ngFor="let cartItem of cartItems">
                 <div class="img">
-                  <img src="{{cartItem.image}}" alt="">
+                  <img src="{{cartItem.images[0].src}}" alt="">
                 </div>
 
                 <div class="title">
-                  {{cartItem.title}}
+                  {{cartItem.name}}
                 </div>
 
                 <div class="subtotal">
@@ -132,18 +174,51 @@
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
+      <div class="cart-div"
+      style="
+          background: #FFFFFF;
+          padding: 10px 20px;
+          box-shadow: 0px 0px 0px 0px black;
+          border-radius: 5px;
+          height: auto;
+          display:flex;
+          flex-direction: column;"
+          >
+          <span>
+            <span class="total-title">
+            Subtotal:
+            </span>
+            <span class="total-value">
+              {{totalPrice | currency:"NGN":"symbol-narrow": '2.0-0'}}
+            </span>
+          </span>
+
+          <span>
+            <span class="total-title">
+            shipping:
+            </span>
+            <span class="total-value">
+              {{shippingFee | currency:"NGN":"symbol-narrow": '2.0-0'}}
+            </span>
+          </span>
+
+
+      </div>
       <div class="cart-div">
-        <span class="total-title">
-          Total:
-        </span>
-        <span class="total-value">
-          {{totalPrice | currency:"NGN":"symbol-narrow": '2.0-0'}}
-        </span>
+          <span class="total-title">
+            Total:
+          </span>
+          <span class="total-value">
+            {{totalPrice + shippingFee  | currency:"NGN":"symbol-narrow": '2.0-0'}}
+          </span>
       </div>
 
     </div>
   </div>
+</form>
+
 
 
 
 </section>
+

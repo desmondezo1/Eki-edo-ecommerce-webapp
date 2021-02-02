@@ -1,12 +1,12 @@
-<div *ngIf="cartItem.title || cartItem.image; else cartempty" class="cart-item">
+<div *ngIf="cartItem.name || cartItem.image[0]; else cartempty" class="cart-item">
 
   <div *ngIf="cartItem" class="item-wrap">
     <div class="img">
-      <img src="{{cartItem.image}}" alt="">
+      <img src="{{cartItem.images[0].src}}" alt="">
     </div>
     <div class="item-details">
       <div class="item-name">
-        <h1> {{cartItem.title}}</h1>
+        <h1> {{cartItem.name}}</h1>
       </div>
       <span class="remove" (click)="removeItem(cartItem)">
         <button>
@@ -42,22 +42,23 @@
 
   <div class="unit-price">
     <div class="current-price">
+      {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
 
-      <span *ngIf="cartItem?.discount_price else oldprice" >
+      <!-- <span *ngIf="cartItem?.discount_price else oldprice" >
         {{cartItem?.discount_price | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </span>
-      
+
       <ng-template #oldprice>
           {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
-      </ng-template>
+      </ng-template> -->
 
     </div>
     <div class="discount" *ngIf="cartItem?.discount_price">
       <div class="old-price">
-       {{cartItem?.discount_price}}
+       {{cartItem?.sale_price}}
       </div>
       <div class="save-price">
-        Savings:{{(cartItem?.price - cartItem?.discount_price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
+        Savings:{{(cartItem?.regular_price - cartItem?.sale_price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </div>
     </div>
   </div>

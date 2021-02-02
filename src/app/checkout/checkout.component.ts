@@ -1,3 +1,5 @@
+import { OrdersService } from './../service/orders.service';
+import { ProductService } from 'src/app/service/product.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './../service/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -18,15 +20,21 @@ import { MapsAPILoader } from '@agm/core';
 export class CheckoutComponent implements OnInit {
 
   addressForm: FormGroup;
+  shippingZones;
+  zoneId;
+  methodid;
   reference = '';
   title;
+  shippingFee: number;
   userData;
   cartItems;
+  shippingMethods;
   userId;
   totalPrice: any;
   lat;
   lng;
   zoom = 1;
+  dataPayload:  any = {};
 
   private geoCoder;
 
@@ -44,7 +52,9 @@ export class CheckoutComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private prdService: ProductService,
+    private ordersService: OrdersService
   ) {
 
 
@@ -52,19 +62,49 @@ export class CheckoutComponent implements OnInit {
       fullName: '',
       address: ['', [Validators.required]],
       phone: ['', [Validators.required]],
-      delivery_method: ''
+      delivery_method: ['', [Validators.required]],
+      delivery_zone: ['', [Validators.required]]
     });
 
     this.auth.authState.subscribe( user => {
       this.userId = user.uid;
     });
 
+    // get user data
     this.userData = this.authService.user$.subscribe(user => {
+      localStorage.setItem('userEmail', user.email);
       const usr = {
         fullName : `${user.firstName} ${user.lastName}`,
         address: user.address,
         phone: user.phone
       };
+
+      // Build data for order
+      this.dataPayload.billing = {
+        "first_name": user.firstName,
+        "last_name": user.lastName,
+        "address_1": user.address,
+        "address_2": "",
+        "city": user?.city,
+        "state": user?.state,
+        "postcode": "94103",
+        "country": "NG",
+        "email": user.email
+      };
+      // Build data for order
+      this.dataPayload.shipping = {
+        "first_name": user.firstName,
+        "last_name": user.lastName,
+        "address_1": user.address,
+        "address_2": "",
+        "city": user?.city,
+        "state": user?.state,
+        "postcode": "94103",
+        "country": "NG",
+      };
+
+
+
       this.addressForm.patchValue(usr);
       console.log('usr ==', usr);
       console.log(user);
@@ -99,7 +139,7 @@ export class CheckoutComponent implements OnInit {
     this.addressForm.get('fullName').disable();
     this.addressForm.get('phone').disable();
     this.addressForm.get('address').disable();
-    this.addressForm.get('delivery_method').disable();
+    // this.addressForm.get('delivery_method').disable();
     if (editbtn){
       editbtn.style.display = 'none';
     }
@@ -134,7 +174,28 @@ export class CheckoutComponent implements OnInit {
   paymentDone(ref: any): void {
     this.title = 'Payment successfull';
     console.log(this.title, ref);
-    this.cartService.sendItemsToOrders();
+
+    // let data = {
+    //   ...ref,
+    //   ...obj1
+    // }
+    this.dataPayload.shipping_lines = [
+          {
+            "method_id": "flat_rate",
+            "method_title": "Flat Rate",
+            "total":  this.shippingFee.toString()
+          }
+        ];
+
+        this.dataPayload.payment_method =  "paystack";
+        this.dataPayload.payment_method_title = "Paystack";
+        this.dataPayload.set_paid = true;
+
+    console.log(this.dataPayload);
+    this.ordersService.createOrderOnWoocommerce(this.dataPayload).subscribe(a => {
+      console.log(a);
+    });
+    
   }
 
   paymentCancel(): void {
@@ -171,7 +232,34 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+  selectedZone(event: any){
+    console.log(event.target.value);
+    this.zoneId = event.target.value;
+    this.prdService.getShippingMethods(event.target.value).subscribe(a =>{
+      let arr = a.filter(y => y.enabled === true)
+      this.shippingMethods = arr;
+      // console.log("methods",a);
+    })
 
+    // this.zoneId
+  }
+
+  selectedMethod(event: any){
+    console.log(event.target.value);
+    this.methodid = event.target.value;
+    this.prdService.getSingleShippingMethod(this.zoneId, this.methodid).subscribe(a => {
+        this.shippingFee = +a.settings.cost.value;
+        this.options.amount = this.options.amount  + (this.shippingFee * 100);
+      console.log('method', a);
+      // this.ngOnInit();
+      console.log(this.shippingFee);
+    });
+    // this.prdService.getShippingMethods(event.target.value).subscribe(a =>{
+    //   this.shippingMethods = a;
+    //   console.log("methods",a);
+    // })
+    // this.zoneId
+  }
 
 
 
@@ -195,24 +283,49 @@ export class CheckoutComponent implements OnInit {
       console.log('checkout', a)
       this.cartItems = a;
 
+      let nArr = [];
+
+      for (let index = 0; index < a.length; index++) {
+        nArr[index] = {
+          "product_id": a[index].id,
+          "quantity": a[index].qty
+        }
+
+      }
+
+
+
+      console.log(a, nArr);
+
+
+
+      // building data payload
+      // this.dataPayload.line_items = a;
+      this.dataPayload.line_items = nArr;
+
       if (!this.isEmpty(a)){
         this.totalPrice = 0;
         a.forEach(r => {
-          if(r.discount_price){
-            console.log('new g', (r.price * r.qty));
-            this.totalPrice += ( +r.discount_price * +r.qty);
-            console.log(Math.round(this.totalPrice));
-          }else{
-            console.log('new g', (r.price * r.qty));
-            this.totalPrice += ( +r.price * +r.qty);
-            console.log(Math.round(this.totalPrice));
-          }
+          // if(r.discount_price){
+          //   console.log('new g', (r.price * r.qty));
+          //   this.totalPrice += ( +r.discount_price * +r.qty);
+          //   console.log(Math.round(this.totalPrice));
+          // }else{
+          //   console.log('new g', (r.price * r.qty));
+          //   this.totalPrice += ( +r.price * +r.qty);
+          //   console.log(Math.round(this.totalPrice));
+          // }
+
+          console.log('new g', (r.price * r.qty));
+          this.totalPrice += ( +r.price * +r.qty);
+          console.log(Math.round(this.totalPrice));
 
        });
       }
       this.options = {
-        amount: (Math.round(this.totalPrice) * 100),
-        email: 'user@mail.com',
+        amount: (Math.round(this.totalPrice)  * 100),
+        // email: 'user@mail.com',
+        email: localStorage.getItem('userEmail'),
         ref: `${Math.ceil(Math.random() * 10e10)}`
       };
 
@@ -251,6 +364,11 @@ export class CheckoutComponent implements OnInit {
     //     localStorage.setItem('finaltotalPrice', JSON.stringify(a));
     //   }
     // )
+
+    this.prdService.getShippingZone().subscribe(a => {
+      this.shippingZones = a;
+      console.log({a});
+    })
   }
 
 }
