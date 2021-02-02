@@ -16,9 +16,33 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ordersService.getUserOrders().subscribe(a => {
-        this.orders = a;
+      console.log(a);
+
+      let nArr: any[] = []
+
+      for (let index = 0; index < a.length; index++) {
+        let prod = a[index].products;
+          for (let index = 0; index < prod.length; index++) {
+
+            nArr.push({
+              'id': prod[index].id,
+              'name': prod[index].name,
+              'price': prod[index].price,
+              'product_id': prod[index].product_id,
+              'quantity': prod[index].quantity,
+              'purchase_date': prod[index].purchase_date,
+            });
+          }
+      }
+
+
+
+        this.orders = nArr;
+        console.log({nArr});
 
       });
+
+
   }
 
 }

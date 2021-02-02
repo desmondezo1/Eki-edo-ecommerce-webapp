@@ -52,7 +52,7 @@
 
 
     <div class="delivery-method" #w>
-      <h3>Choose an available shipping zone</h3>
+      <h3>Select a shipping zone</h3>
       <div class="input-group shippingzone">
 
         <div class="input-group-prepend">
@@ -65,7 +65,7 @@
       </div>
 
       <span  *ngIf="shippingMethods">
-        <h3>Choose Delivery Method</h3>
+        <h3>Select a Delivery Method</h3>
         <div class="input-group shippingzone">
 
           <div class="input-group-prepend">
@@ -198,7 +198,14 @@
             shipping:
             </span>
             <span class="total-value">
-              {{shippingFee | currency:"NGN":"symbol-narrow": '2.0-0'}}
+              <span *ngIf="shippingFee; else noFee">
+                    {{shippingFee | currency:"NGN":"symbol-narrow": '2.0-0'}}
+              </span>
+              <ng-template #noFee>
+                <i>Select a shipping zone and Method</i>
+              </ng-template>
+
+
             </span>
           </span>
 

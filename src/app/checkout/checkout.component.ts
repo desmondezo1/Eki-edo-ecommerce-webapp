@@ -175,27 +175,49 @@ export class CheckoutComponent implements OnInit {
     this.title = 'Payment successfull';
     console.log(this.title, ref);
 
-    // let data = {
-    //   ...ref,
-    //   ...obj1
-    // }
-    this.dataPayload.shipping_lines = [
-          {
-            "method_id": "flat_rate",
-            "method_title": "Flat Rate",
-            "total":  this.shippingFee.toString()
-          }
-        ];
+    // ################# data to be sent to woocommerce to create an order ########################
+        this.dataPayload.shipping_lines = [
+              {
+                "method_id": "flat_rate",
+                "method_title": "Flat Rate",
+                "total":  this.shippingFee.toString()
+              }
+            ];
+            this.dataPayload.payment_method =  "paystack";
+            this.dataPayload.payment_method_title = "Paystack";
+            this.dataPayload.set_paid = true;
+    // ##############
 
-        this.dataPayload.payment_method =  "paystack";
-        this.dataPayload.payment_method_title = "Paystack";
-        this.dataPayload.set_paid = true;
 
     console.log(this.dataPayload);
     this.ordersService.createOrderOnWoocommerce(this.dataPayload).subscribe(a => {
       console.log(a);
+
+      let nArr = [];
+      let oldArr = a.line_items;
+
+      for (let index = 0; index < oldArr.length; index++) {
+        nArr[index] = {
+          "product_id": oldArr[index].product_id,
+          "id": oldArr[index].id,
+          "quantity": oldArr[index].quantity,
+          'name': oldArr[index].name,
+          'price': oldArr[index].price,
+          'purchase_date': Date.now()
+        }
+
+      }
+
+      console.log('nArr => ', nArr);
+
+
+
+      // then set ordered items in firebase for frontend user
+      this.ordersService.addOrdersToFirestore(nArr);
     });
-    
+
+    this.cartService.deleteAllItemsInCart();
+
   }
 
   paymentCancel(): void {
@@ -233,11 +255,13 @@ export class CheckoutComponent implements OnInit {
 
 
   selectedZone(event: any){
+    this.spinner.show();
     console.log(event.target.value);
     this.zoneId = event.target.value;
     this.prdService.getShippingMethods(event.target.value).subscribe(a =>{
       let arr = a.filter(y => y.enabled === true)
       this.shippingMethods = arr;
+      this.spinner.hide();
       // console.log("methods",a);
     })
 
@@ -245,6 +269,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   selectedMethod(event: any){
+    this.spinner.show();
     console.log(event.target.value);
     this.methodid = event.target.value;
     this.prdService.getSingleShippingMethod(this.zoneId, this.methodid).subscribe(a => {
@@ -253,6 +278,7 @@ export class CheckoutComponent implements OnInit {
       console.log('method', a);
       // this.ngOnInit();
       console.log(this.shippingFee);
+      this.spinner.hide();
     });
     // this.prdService.getShippingMethods(event.target.value).subscribe(a =>{
     //   this.shippingMethods = a;

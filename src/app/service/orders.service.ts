@@ -39,6 +39,7 @@ export class OrdersService {
                   actions.map(a => {
                   const data = a.payload.doc.data() as any;
                   data.fid = a.payload.doc.id;
+                  console.log('data', data);
                   // return this.test;
                   return data;
                   })
@@ -60,4 +61,19 @@ export class OrdersService {
       getUserOrders(){
         return this.userOrders;
       }
+
+      async addOrdersToFirestore(items): Promise<void>{
+        console.log(this.userId);
+        let userId = await this.auth.currentUser;
+        const id = userId.uid;
+
+        if (id){
+           this.afs.collection<any>('users').doc(id).collection<any>('orders').add({'products': items}).then(
+             () => console.log('added to sorders')
+           );
+        }
+
+      }
+
+
 }

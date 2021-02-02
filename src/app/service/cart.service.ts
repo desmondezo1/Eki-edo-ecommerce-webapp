@@ -259,6 +259,42 @@ export class CartService {
 
     }
 
+    async deleteAllItemsInCart(){
+
+      // const qry: any = await this.afs.collection<any>('users').doc(this.userId).collection<any>('cart').ref.get();
+      const qry = await this.afs.collection<any>('users').doc(this.userId).collection<any>('cart').get();
+      // const batch = this.afs.firestore.batch();
+
+      // // You can use the QuerySnapshot above like in the example i linked
+      // qry.forEach(doc => {
+      //   batch.delete(doc);
+      // });
+
+      // batch.commit();
+
+      // qry.then(function(querySnapshot) {
+      //   querySnapshot.forEach(function(doc) {
+      //     doc.ref.delete();
+      //   });
+      // });
+      qry.toPromise().then(
+        res => {
+          res.forEach(element => {
+            element.ref.delete();
+          });
+        });
+
+
+
+  //     db.collection("collectionName")
+  // .get()
+  // .then(res => {
+  //   res.forEach(element => {
+  //     element.ref.delete();
+  //   });
+  // });
+    }
+
 
 
 

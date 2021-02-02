@@ -38,7 +38,9 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
 
 
   searchProducts(q: any): any{
-
+    // this.route.queryParams.subscribe(params => {
+    //   console.log(params);
+    // })
 
     return this.prdService.searchForProduct(q).subscribe(
       (res) => {
@@ -65,8 +67,11 @@ export class SearchResultComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.spinner.show();
-
-    this.searchProducts(this.route.snapshot.params['q']);
+    this.route.paramMap.subscribe(paramMap =>{
+      let q = paramMap.get('q');
+      this.searchProducts(q);
+    })
+    // this.searchProducts(this.route.snapshot.params['q']);
 
   }
 

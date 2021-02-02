@@ -2,19 +2,23 @@
   My Orders
 </h2>
 
-<div class="alert alert-info" *ngIf="orders.length === 0 || orders === undefined || orders === null; else orderedItems">
+
+<div class="alert alert-info" *ngIf="orders?.length === 0 || orders === undefined || orders === null; else orderedItems">
   You haven't made any orders yet
 </div>
+
+
+
 
 
 <ng-template #orderedItems>
   <div class="cart-item" *ngFor="let item of orders">
 
     <div class="item-wrap">
-      <div class="img">
+      <!-- <div class="img">
         <img src="{{item.images[0].src}}"
          alt="">
-      </div>
+      </div> -->
       <div class="item-details">
         <div class="item-name">
           <h1>
@@ -22,7 +26,7 @@
           </h1>
         </div>
         <span class="date">
-            20 OCT, 2020
+           Ordered on : {{item.purchase_date | date: 'shortDate'}}
         </span>
       </div>
 
@@ -30,21 +34,21 @@
 
     <div class="unit-price">
       <div class="current-price">
-        <!-- {{cartItem.price | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
+        <!-- {{item.price | currency:"NGN":"symbol-narrow": '2.0-0'}} -->
       </div>
-      <div class="discount">
+      <!-- <div class="discount">
         <div class="old-price">
-          {{item.regular_price | currency:"NGN":"symbol-narrow": '2.0-0'}}
+          {{item.price | currency:"NGN":"symbol-narrow": '2.0-0'}}
         </div>
         <div class="save-price" *ngIf="item.sale_price">
           Savings:  {{(item.regular_price - item.sale_price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="sub-total">
       <span class="sub-price">
-        {{(item?.amountPaid) | currency:"NGN":"symbol-narrow": '2.0-0'}}
+        {{(item?.price) | currency:"NGN":"symbol-narrow": '2.0-0'}}
       </span>
     </div>
 

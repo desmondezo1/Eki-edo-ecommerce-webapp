@@ -64,15 +64,26 @@ export class ProductService {
 
   getShippingZone(){
     // shippingZonesApi
-    return this.http.get<Product[]>(shippingZonesApi + '?' + credentials);
+    return this.http.get<Product[]>(shippingZonesApi + '?' + credentials)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
   getShippingMethods(id){
-    return this.http.get<any[]>(shippingZonesApi + '/' + id + '/methods' +'?' + credentials);
+    return this.http.get<any[]>(shippingZonesApi + '/' + id + '/methods' +'?' + credentials)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
   getSingleShippingMethod(zoneid, methodid){
-    return this.http.get<any[]>(shippingZonesApi + '/' + zoneid + '/methods/' + methodid +'?' + credentials);
+    return this.http.get<any[]>(shippingZonesApi + '/' + zoneid + '/methods/' + methodid +'?' + credentials).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
 
