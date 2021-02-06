@@ -190,7 +190,7 @@ export class CheckoutComponent implements OnInit {
 
 
     console.log(this.dataPayload);
-    this.ordersService.createOrderOnWoocommerce(this.dataPayload).subscribe(a => {
+    this.ordersService.createOrderOnWoocommerce(this.dataPayload).subscribe((a: any) => {
       console.log(a);
 
       let nArr = [];
@@ -258,7 +258,7 @@ export class CheckoutComponent implements OnInit {
     this.spinner.show();
     console.log(event.target.value);
     this.zoneId = event.target.value;
-    this.prdService.getShippingMethods(event.target.value).subscribe(a =>{
+    this.prdService.getShippingMethods(event.target.value).subscribe((a: any) =>{
       let arr = a.filter(y => y.enabled === true)
       this.shippingMethods = arr;
       this.spinner.hide();
@@ -272,7 +272,7 @@ export class CheckoutComponent implements OnInit {
     this.spinner.show();
     console.log(event.target.value);
     this.methodid = event.target.value;
-    this.prdService.getSingleShippingMethod(this.zoneId, this.methodid).subscribe(a => {
+    this.prdService.getSingleShippingMethod(this.zoneId, this.methodid).subscribe((a: any) => {
         this.shippingFee = +a.settings.cost.value;
         this.options.amount = this.options.amount  + (this.shippingFee * 100);
       console.log('method', a);
