@@ -1,12 +1,12 @@
 <ngb-carousel class="ng-carousel" *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
   <ng-template class="ng-temp" ngbSlide *ngFor="let image of images">
     <div class="picsum-img-wrapper">
-      <img [src]="image" alt="Random slide">
+      <img [src]="image" alt="Random slide" onerror="this.src='https://picsum.photos/200/300'">
     </div>
-    <div class="carousel-caption">
+    <!-- <div class="carousel-caption">
       <h3>No mouse navigation</h3>
       <p>This carousel hides navigation arrows and indicators.</p>
-    </div>
+    </div> -->
   </ng-template>
 </ngb-carousel>
 

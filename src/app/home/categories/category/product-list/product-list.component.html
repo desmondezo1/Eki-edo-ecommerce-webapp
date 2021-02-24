@@ -10,7 +10,7 @@ style="
 
 <section class="products">
 
-  <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 10, currentPage: p }"  [product]="product" ></app-product>
+  <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 50, currentPage: p }"  [product]="product" ></app-product>
 
 
 </section>

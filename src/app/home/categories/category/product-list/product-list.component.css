@@ -21,11 +21,13 @@
 @media screen and (max-width:767px){
   .products{
     /* grid-template-columns: repeat(auto-fit, 200px); */
-    padding: 0 10px 30px 10px;
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      margin: 10px 0;
-      justify-content: unset;
+    padding: 10px 10px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 10px 0;
+    justify-content: unset;
   }
 }
