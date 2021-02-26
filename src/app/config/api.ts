@@ -14,8 +14,10 @@ export const credentials = consumerKey + '&' + consumerSecret;
 export const productsApi = wooBaseUrl + '/products';
 export const categoriesApi = wooBaseUrl + '/products/categories';
 export const searchApi = wooBaseUrl + '/products?search=';
+export const getCategoryApi = wooBaseUrl + '/products?category=';
 export const shippingZonesApi = wooBaseUrl + '/shipping/zones';
 export const orderApi = wooBaseUrl + '/orders';
+// /wp-json/wc/v3/products?category=ID
 // /wp-json/wc/v3/shipping/zones/<zone_id>/methods/<id>
 // https://admin.ekiedong.com/wp-json/wc/v3/shipping/zones
 

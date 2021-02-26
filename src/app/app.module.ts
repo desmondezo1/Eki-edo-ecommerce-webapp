@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ConnectionServiceModule } from 'ng-connection-service';
+// import { CategoryResultsComponent } from './products/category-results/category-results.component';
 // import { ContactUsComponent } from './contact-us/contact-us.component';
 // import { AboutComponent } from './about/about.component';
 @NgModule({
@@ -83,6 +84,7 @@ import { ConnectionServiceModule } from 'ng-connection-service';
     // ChangePasswordComponent,
     // CheckoutComponent,
     UsermanagementComponent,
+    // CategoryResultsComponent,
     // ContactUsComponent,
     // AboutComponent
   ],

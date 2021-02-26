@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap'
 import { CartService } from 'src/app/service/cart.service';
 import { ThisReceiver } from '@angular/compiler';
+import { ProductService } from '../service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +17,7 @@ import { ThisReceiver } from '@angular/compiler';
 export class NavbarComponent implements OnInit {
  hamburger = document.querySelector('.hamburger');
  mainBody = document.querySelector('body');
+ categories: any[];
 
  isLoggedIn$: Observable<boolean>;
 
@@ -22,7 +25,9 @@ constructor(
   // private userservice: UserService
      public authService: AuthService,
      private cartService: CartService,
-     private MsgService: MessengerService
+     private MsgService: MessengerService,
+     private prdService: ProductService,
+     private router: Router,
 ) { }
 
 
@@ -96,6 +101,11 @@ constructor(
     }
   }
 
+  getCategoryProducts(id){
+    this.router.navigate(['c', id]);
+  }
+
+
 
 
 
@@ -145,6 +155,10 @@ constructor(
 
     //   });
 
-}
+    this.prdService.getCategories().subscribe( a => {
+      this.categories = a;
+      console.log(a);
+       })
 
+}
 }

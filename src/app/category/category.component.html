@@ -1,1 +1,19 @@
-<p>Hello</p>
+<div class="wrap">
+
+  <div class="product-list">
+
+    <div class="categories">
+      <ul>
+        <li *ngFor="let category of categories" (click)="getCategoryProducts(category.id)">{{category.name}}</li>
+      </ul>
+    </div>
+
+    <div class="prod-res-wrapper">
+      <app-results [products]="products"></app-results>
+    </div>
+
+
+   </div>
+
+</div>
+

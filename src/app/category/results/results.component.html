@@ -11,7 +11,7 @@ style="
 <section class="products">
   <span *ngIf="products?.length === 0" style="font-weight: 700; font-size: 1.2rem;">No result found</span>
   <!-- <app-product *ngFor="let product of productList | paginate: { itemsPerPage: 10, currentPage: p }"  [product]="product" ></app-product> -->
-  <app-product-item *ngFor="let product of products | paginate: { itemsPerPage: 50, currentPage: p }"  [product]="product" ></app-product-item>
+  <app-item *ngFor="let product of products | paginate: { itemsPerPage: 50, currentPage: p }"  [product]="product" ></app-item>
 </section>
 <div class="pagination" style=" justify-content: center;">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

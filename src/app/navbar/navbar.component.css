@@ -8,6 +8,32 @@
     z-index: 99;
 }
 
+/deep/ .card {
+  border: none;
+  background: #fff;
+}
+
+/deep/ .card-header{
+  background: #fff;
+  padding: 0;
+}
+
+/deep/ .card ul li{
+  list-style: none;
+  margin-bottom: 10px;
+  background: #f7f7f7;
+  padding: 5px 5px 5px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 7px;
+}
+
+/deep/ .card ul li:hover{
+  background: #ebfff2;
+  color: #539467;
+  cursor: pointer;
+}
+
 nav{
   /* position: relative; */
 }

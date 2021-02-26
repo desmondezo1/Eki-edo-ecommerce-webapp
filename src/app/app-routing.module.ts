@@ -1,10 +1,11 @@
-import { AboutModule } from './about/about.module';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { SavedItemsComponent } from './account/saved-items/saved-items.component';
-import { OrdersComponent } from './account/orders/orders.component';
-import { ChangePasswordComponent } from './account/change-password/change-password.component';
-import { UpdateProfileComponent } from './account/update-profile/update-profile.component';
-import { AccountComponent } from './account/account.component';
+import { CategoryComponent } from './category/category.component';
+// import { AboutModule } from './about/about.module';
+// import { CheckoutComponent } from './checkout/checkout.component';
+// import { SavedItemsComponent } from './account/saved-items/saved-items.component';
+// import { OrdersComponent } from './account/orders/orders.component';
+// import { ChangePasswordComponent } from './account/change-password/change-password.component';
+// import { UpdateProfileComponent } from './account/update-profile/update-profile.component';
+// import { AccountComponent } from './account/account.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -25,6 +26,7 @@ const redirectLoggedInToProfile = () => redirectLoggedInTo(['/profile']);
 const routes: Routes = [
   {path: '' , component: HomeComponent},
   {path: 'about', loadChildren: () => import('src/app/about/about.module').then(m => m.AboutModule)},
+  {path: 'c/:c', loadChildren: ()=> import('src/app/category/category.module').then(m => m.CategoryModule)},
   // {path: '', loadChildren: () => import('src/app/home/home.module').then(m => m.HomeModule) },
   {path: 'p/:id', loadChildren: () => import('src/app/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
   // {path: 'checkout', component: CheckoutComponent,

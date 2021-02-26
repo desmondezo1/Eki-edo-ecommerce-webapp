@@ -3,7 +3,7 @@
   <div class="categories-list">
     <h1>Categories</h1>
       <ul>
-        <li *ngFor="let category of categories"> <a href="">{{category.name}}</a> </li>
+        <li *ngFor="let category of categories" (click)="getProductsInCategory(category.id)"><a> {{category.name}} </a></li>
       </ul>
   </div>
   <div class="carousel">
@@ -11,13 +11,13 @@
     <app-carousel></app-carousel>
 
   </div>
-  <div class="promoted">
+  <!-- <div class="promoted">
       <div class="promo1">
         Promo1
       </div>
       <div class="promo2">
         Promo2
       </div>
-  </div>
+  </div> -->
 
 </div>

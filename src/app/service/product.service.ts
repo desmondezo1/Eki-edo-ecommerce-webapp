@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment.prod';
-import { productsApi, categoriesApi, credentials, shippingZonesApi } from './../config/api';
+import { productsApi, categoriesApi, credentials, shippingZonesApi, getCategoryApi } from './../config/api';
 import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {Product} from 'src/app/models/product';
@@ -99,6 +99,19 @@ export class ProductService {
       catchError(this.handleError) // then handle the error
     );
 
+  }
+
+  listCategoryProducts(c: string): any{
+    if (!c){
+      this.router.navigate(['']);
+      return false;
+    }
+
+    return this.http.get<Product[]>(getCategoryApi + c + '&' + credentials)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
 

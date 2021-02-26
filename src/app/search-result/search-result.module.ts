@@ -37,5 +37,6 @@ import { ProductItemComponent } from './product-results/product-item/product-ite
     ConnectionService,
     // NgbModal
   ]
+
 })
-export class SearchResultModule { }
+export class SearchResultModule {}
